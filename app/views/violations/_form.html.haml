@@ -1,9 +1,10 @@
 = simple_form_for @violation, :html => { :class => 'form-horizontal' } do |f|
 
-  = f.input :title
-  = f.input :description
-  = f.input :address
-  = f.input :violator_id
+  .form-inputs
+    = f.input :title
+    = f.input :description
+    = f.input :address
+    = f.input :violator_id
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
