@@ -1,4 +1,7 @@
 class ViolationsController < ApplicationController
+
+  before_filter :verify_user_owner, :only => [:edit, :update, :destroy]
+
   # GET /violations
   # GET /violations.json
   def index
@@ -79,5 +82,13 @@ class ViolationsController < ApplicationController
       format.html { redirect_to violations_url }
       format.json { head :no_content }
     end
+  end
+
+
+  private
+
+  # placeholder to ensure a user can only update their own violation (authentication & authorization)
+  def verify_user_owner
+    authenticate_user!
   end
 end
