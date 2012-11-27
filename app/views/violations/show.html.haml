@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @violation.title
+%p
+  %b Description:
+  = @violation.description
+%p
+  %b Address:
+  = @violation.address
+%p
+  %b Violator:
+  = @violation.violator_id
+
+= link_to 'Edit', edit_violation_path(@violation)
+\|
+= link_to 'Back', violations_path
