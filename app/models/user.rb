@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:login]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me,
-  :gender, :bio, :birthday, :given_name, :family_name, :hometown
+  :gender, :bio, :birthday, :given_name, :family_name, :hometown,
+  :violations
+
+  has_many :violations
 
   validates_presence_of :username
   validates_format_of :username, :without => /@/, :message => "cannot contain the '@' symbol"
