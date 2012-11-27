@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127085519) do
+ActiveRecord::Schema.define(:version => 20121127201110) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(:version => 20121127085519) do
     t.integer  "violator_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
+  add_index "violations", ["user_id"], :name => "index_violations_on_user_id"
   add_index "violations", ["violator_id"], :name => "index_violations_on_violator_id"
 
 end
