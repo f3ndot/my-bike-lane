@@ -1,12 +1,15 @@
-= link_to t('.new', :default => t("helpers.links.new")), new_violation_path, :class => 'btn btn-primary'
+/ = link_to t('.new', :default => t("helpers.links.new")), new_violation_path, :class => 'btn btn-primary'
 
 .violations
   - @violations.each do |violation|
-    .row
+    .row.violation-row
       .span1
         .author
-          = link_to image_tag(avatar_url(violation.user)), user_path(violation.user)
-      .span8
+          - if violation.user.nil?
+            = image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar")
+          - else
+            = link_to image_tag(avatar_url(violation.user, 65)), user_path(violation.user)
+      .span11
         .violation-item
           = link_to violation.title, violation_path(violation)
           =l violation.created_at, :format => :short
