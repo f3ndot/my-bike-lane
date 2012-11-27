@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me,
+  attr_accessible :admin, :username, :email, :password, :password_confirmation, :remember_me,
   :gender, :bio, :birthday, :given_name, :family_name, :hometown,
   :violations
 
@@ -20,12 +20,17 @@ class User < ActiveRecord::Base
   # Virtual attribute for allowing email or username for logging in
   attr_accessor :login
 
-  def display_name
-    if given_name.present? && family_name.present?
-      "#{given_name} #{family_name}"
-    else
-      username
+  def display_name(html = true)
+    display = ""
+    if html == true
+      display << "<i class='icon-star'></i>" if admin?
     end
+    if given_name.present? && family_name.present?
+      display << "#{given_name} #{family_name}"
+    else
+      display << username
+    end
+    display.html_safe
   end
 
   def age

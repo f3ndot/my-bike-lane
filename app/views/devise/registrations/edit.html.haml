@@ -7,6 +7,12 @@
 
   .form-inputs
     .well
+      - if resource.admin?
+        .control-group
+          .controls
+            %p.text-info
+              %i.icon-legal
+              This user is an administrator
       = f.input :username, :disabled => true
       = f.input :email, :required => true, :autofocus => true
       = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
