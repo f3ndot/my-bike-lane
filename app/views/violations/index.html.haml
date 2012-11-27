@@ -6,9 +6,9 @@
       .span1
         .author
           - if violation.user.nil?
-            = image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar", :alt => "Anonymous", :title => "Anonymous")
+            %a{:href => "#", :rel => "avatar-tooltip", :title => "Anonymous"}= image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar", :alt => "", :title => "")
           - else
-            = link_to image_tag(avatar_url(violation.user, 65), :alt => violation.user.display_name, :title => violation.user.display_name), user_path(violation.user), :rel => "avatar-tooltip", :title => violation.user.display_name
+            = link_to image_tag(avatar_url(violation.user, 65), :alt => "", :title => ""), user_path(violation.user), :rel => "avatar-tooltip", :title => violation.user.display_name
       .span11
         .violation-item.clearfix
           %strong= link_to violation.title, violation_path(violation)
