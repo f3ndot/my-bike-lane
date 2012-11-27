@@ -58,5 +58,13 @@ module MyBikeLane
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.to_prepare do
+      Devise::SessionsController.layout "splash"
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "splash" }
+      Devise::ConfirmationsController.layout "splash"
+      Devise::UnlocksController.layout "splash"
+      Devise::PasswordsController.layout "splash"
+    end
   end
 end

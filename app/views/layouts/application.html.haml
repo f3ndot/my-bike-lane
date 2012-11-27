@@ -9,44 +9,15 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
   %body
 
-    %header.container
-      .navbar
-        .navbar-inner
-          %a.brand{href:"/"} MyBikeLane
-          %ul.nav
-            %li
-              %a{href: "/"} Home
-            %li
-              = link_to "Submit a Violation", new_violation_path
-          %ul.nav.pull-right
-            - if user_signed_in?
-              %li.dropdown
-                %a{href: "#", class: "dropdown-toggle", data: {toggle: "dropdown"}}
-                  = image_tag avatar_url(current_user, 20), {class: "avatar-url"}
-                  = current_user.display_name
-                  %b.caret
-                %ul.dropdown-menu
-                  %li= link_to "Edit Profile", edit_user_registration_path
-                  %li.divider
-                  %li= link_to "Logout", destroy_user_session_path, method: :delete
-            - else
-              %li
-                = link_to "Login", new_user_session_path
-              %li{class: "divider-vertical"}
-                = link_to "Sign Up", new_user_registration_path
+    = render 'layouts/navbar'
+
     .container
-      .row
-        .span10.offset1
-          - unless notice.nil?
-            .alert.alert-success.fade.in
-              %button{type: "button", class: "close", data: {dismiss: "alert"}} &times;
-              = notice
-          - unless alert.nil?
-            .alert.alert-error.fade.in
-              %button{type: "button", class: "close", data: {dismiss: "alert"}} &times;
-              = alert
+
+      = render 'layouts/flashes'
+
       .row
         .span9
           = yield
@@ -60,20 +31,4 @@
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    %footer.footer
-      .container
-        %p.pull-right
-          %a{href: "#"} Back to top
-        %p
-          Created and maintained by
-          %a{href: "https://www.twitter.com/f3ndot"} @f3ndot
-          of
-          %a{href: "https://www.conduitlabs.ca/"} Conduit Labs
-        %p
-          Provided as a free service to the
-          %a{href: "https://www.twitter.com/search?q=%23BikeTO"} #BikeTO
-          community
-        %p
-          %a{href: "https://www.github.com/f3ndot/my-bike-lane"} Source code
-          available under the
-          %a{href: "http://en.wikipedia.org/wiki/MIT_License"} MIT License
+    = render 'layouts/footer'

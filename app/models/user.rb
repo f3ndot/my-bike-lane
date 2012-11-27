@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_length_of :username, :in => 2..25
   validates_length_of :bio, :maximum => 500, :allow_nil => true
-  validates_inclusion_of :gender, :in => %w(Male Female Other)
+  validates_inclusion_of :gender, :in => %w(Male Female Other), :allow_nil => true
 
   # Virtual attribute for allowing email or username for logging in
   attr_accessor :login
