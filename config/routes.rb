@@ -1,4 +1,6 @@
 MyBikeLane::Application.routes.draw do
+  devise_for :users
+
   resources :violations
 
   # The priority is based upon order of creation:
