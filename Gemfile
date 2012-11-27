@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails', :group => :development
+gem 'simple_form'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
