@@ -6,14 +6,17 @@
       .span1
         .author
           - if violation.user.nil?
-            = image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar")
+            = image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar", :alt => "Anonymous", :title => "Anonymous")
           - else
-            = link_to image_tag(avatar_url(violation.user, 65)), user_path(violation.user)
+            = link_to image_tag(avatar_url(violation.user, 65), :alt => violation.user.display_name, :title => violation.user.display_name), user_path(violation.user), :rel => "avatar-tooltip", :title => violation.user.display_name
       .span11
         .violation-item.clearfix
-          = link_to violation.title, violation_path(violation)
-          =l violation.created_at, :format => :short
+          %strong= link_to violation.title, violation_path(violation)
           - if current_user == violation.user
             .actions.pull-right
               = link_to "<i class='icon-pencil'></i> Edit".html_safe, edit_violation_path(violation), :class => 'btn btn-mini'
-              = link_to "<strong>&times;</strong>".html_safe, violation_path(violation), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+              %strong= link_to "&times;".html_safe, violation_path(violation), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+          .pull-right.muted.date
+            posted
+            %a{:href => "#", :rel => "tooltip", :title => "#{violation.created_at}"}= time_ago_in_words violation.created_at
+            ago
