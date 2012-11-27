@@ -10,4 +10,10 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   validates_presence_of :username
+  validates_format_of :username, :without => /@/, :message => "cannot contain the '@' symbol"
+  validates_uniqueness_of :username
+  validates_length_of :username, :in => 2..25
+
+  # Virtual attribute for allowing email or username for logging in
+  attr_accessor :login
 end
