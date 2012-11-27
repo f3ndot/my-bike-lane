@@ -16,16 +16,16 @@
         .navbar-inner
           %a.brand{href:"/"} MyBikeLane
           %ul.nav
-            %li.active
+            %li
               %a{href: "/"} Home
             %li
-              %a{href: "#"} Violations
+              = link_to "Submit a Violation", new_violation_path
           %ul.nav.pull-right
             - if user_signed_in?
               %li.dropdown
                 %a{href: "#", class: "dropdown-toggle", data: {toggle: "dropdown"}}
                   = image_tag avatar_url(current_user, 20), {class: "avatar-url"}
-                  = current_user.username
+                  = current_user.display_name
                   %b.caret
                 %ul.dropdown-menu
                   %li= link_to "Edit Profile", edit_user_registration_path
