@@ -25,6 +25,7 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
+gem 'omniauth-twitter'
 gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
