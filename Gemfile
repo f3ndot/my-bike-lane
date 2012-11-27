@@ -28,6 +28,7 @@ gem 'devise'
 gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
+gem 'cancan'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

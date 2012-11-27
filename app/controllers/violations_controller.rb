@@ -1,6 +1,5 @@
 class ViolationsController < ApplicationController
-
-  before_filter :verify_user_owner, :only => [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /violations
   # GET /violations.json
@@ -44,6 +43,7 @@ class ViolationsController < ApplicationController
   # POST /violations.json
   def create
     @violation = Violation.new(params[:violation])
+    @violation.user = current_user unless current_user.nil?
 
     respond_to do |format|
       if @violation.save
@@ -84,11 +84,4 @@ class ViolationsController < ApplicationController
     end
   end
 
-
-  private
-
-  # placeholder to ensure a user can only update their own violation (authentication & authorization)
-  def verify_user_owner
-    authenticate_user!
-  end
 end
