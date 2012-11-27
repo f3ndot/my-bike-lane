@@ -10,29 +10,39 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar
       .navbar-inner
-        .container
-          %a.btn.btn-navbar{data: {toggle: "collapse", target:".nav-collapse"}}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand{href:"#"} MyBikeLane
-          .nav-collapse.collapse
-            %ul.nav
-              %li.active
-                %a{href: "#"} Home
-              %li
-                %a{href: "#"} Violations
-
-    %p.notice= notice
-    %p.alert= alert
+        %a.brand{href:"#"} MyBikeLane
+        %ul.nav
+          %li.active
+            %a{href: "#"} Home
+          %li
+            %a{href: "#"} Violations
 
     .container
       .row
-        .span8
+        .span10.offset1
+          - unless notice.nil?
+            .alert.fade.in
+              %button{type: "button", class: "close", data: {dismiss: "alert"}} &times;
+              %p= notice
+          - unless alert.nil?
+            .alert.alert-block.alert-error.fade.in
+              %button{type: "button", class: "close", data: {dismiss: "alert"}} &times;
+              %h4{class:"alert-heading"}Oh snap! You got an error!
+              %p= alert
+      .row
+        .span9
           = yield
-        .span4
+        .span3
+          .well
+            %h2 Top Offenders
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
     %footer.footer
       .container
