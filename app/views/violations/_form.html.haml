@@ -1,22 +1,20 @@
-= form_for @violation do |f|
-  - if @violation.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@violation.errors.count, "error")} prohibited this violation from being saved:"
-      %ul
-        - @violation.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :address
-    = f.text_field :address
-  .field
-    = f.label :violator_id
-    = f.number_field :violator_id
-  .actions
-    = f.submit 'Save', {class: "btn"}
+= form_for @violation, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'text_area'
+  .control-group
+    = f.label :address, :class => 'control-label'
+    .controls
+      = f.text_field :address, :class => 'text_field'
+  .control-group
+    = f.label :violator_id, :class => 'control-label'
+    .controls
+      = f.number_field :violator_id, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), violations_path, :class => 'btn'

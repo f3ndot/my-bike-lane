@@ -10,22 +10,29 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar
-      .navbar-inner
-        %a.brand{href:"#"} MyBikeLane
-        %ul.nav
-          %li.active
-            %a{href: "#"} Home
-          %li
-            %a{href: "#"} Violations
 
+    %header.container
+      .navbar
+        .navbar-inner
+          %a.brand{href:"#"} MyBikeLane
+          %ul.nav
+            %li.active
+              %a{href: "#"} Home
+            %li
+              %a{href: "#"} Violations
+          %ul.nav.pull-right
+            %li
+              %a{href: "#"} Login
+            %li{class: "divider-vertical"}
+            %li
+              %a{href: "#"} Register
     .container
       .row
         .span10.offset1
           - unless notice.nil?
             .alert.fade.in
               %button{type: "button", class: "close", data: {dismiss: "alert"}} &times;
-              %p= notice
+              = notice
           - unless alert.nil?
             .alert.alert-block.alert-error.fade.in
               %button{type: "button", class: "close", data: {dismiss: "alert"}} &times;

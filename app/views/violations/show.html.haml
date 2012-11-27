@@ -1,18 +1,25 @@
-%p#notice= notice
+- model_class = Violation
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %b Title:
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
   = @violation.title
 %p
-  %b Description:
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
   = @violation.description
 %p
-  %b Address:
+  %strong= model_class.human_attribute_name(:address) + ':'
+  %br
   = @violation.address
 %p
-  %b Violator:
+  %strong= model_class.human_attribute_name(:violator_id) + ':'
+  %br
   = @violation.violator_id
 
-= link_to 'Edit', edit_violation_path(@violation)
-\|
-= link_to 'Back', violations_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), violations_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_violation_path(@violation), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), violation_path(@violation), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
