@@ -25,7 +25,7 @@
               %li.dropdown
                 %a{href: "#", class: "dropdown-toggle", data: {toggle: "dropdown"}}
                   = image_tag avatar_url(current_user, 20), {class: "avatar-url"}
-                  = current_user.email
+                  = current_user.username
                   %b.caret
                 %ul.dropdown-menu
                   %li= link_to "Edit Profile", edit_user_registration_path

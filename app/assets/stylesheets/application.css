@@ -26,3 +26,8 @@
 .footer-links li:first-child {
   padding-left: 0;
 }
+
+header .navbar .avatar-url {
+  border-radius: 2px;
+  margin-right: 2px;
+}
