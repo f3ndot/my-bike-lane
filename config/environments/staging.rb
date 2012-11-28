@@ -67,4 +67,15 @@ MyBikeLane::Application.configure do
 
   # Default URL for Devise
   config.action_mailer.default_url_options = { :host => 'staging.mybikelane.f3ndot.com' }
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => "staging.mybikelane.f3ndot.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end
