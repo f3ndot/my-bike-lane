@@ -33,6 +33,7 @@ gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
 gem 'cancan'
+gem 'fog', "~> 1.3.1"
 gem 'carrierwave'
 gem 'mini_magick'
 
