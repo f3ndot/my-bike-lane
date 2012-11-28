@@ -1,5 +1,6 @@
 class ViolationsController < ApplicationController
   load_and_authorize_resource
+  before_filter :find_violation, :only => [:show]
 
   # GET /violations
   # GET /violations.json
@@ -84,6 +85,19 @@ class ViolationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to violations_url }
       format.json { head :no_content }
+    end
+  end
+
+  protected
+
+  def find_violation
+    @violation = Violation.find params[:id]
+
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the violation_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if request.path != violation_path(@violation)
+      return redirect_to violation_path(@violation), :status => :moved_permanently
     end
   end
 

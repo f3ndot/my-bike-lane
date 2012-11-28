@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128185958) do
+ActiveRecord::Schema.define(:version => 20121128191200) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -95,8 +95,10 @@ ActiveRecord::Schema.define(:version => 20121128185958) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.string   "slug"
   end
 
+  add_index "violations", ["slug"], :name => "index_violations_on_slug", :unique => true
   add_index "violations", ["user_id"], :name => "index_violations_on_user_id"
   add_index "violations", ["violator_id"], :name => "index_violations_on_violator_id"
 
