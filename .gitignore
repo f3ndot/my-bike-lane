@@ -9,7 +9,6 @@
 
 # Ignore the default SQLite database.
 /config/database.yml
-/config/initializers/carrierwave.rb
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
