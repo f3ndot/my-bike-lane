@@ -1,7 +1,8 @@
-= simple_form_for(@photo) do |f|
-  = f.error_notification
-
-  .form-inputs
-
+= simple_form_for @photo, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :title
+  = f.input :description
+  = f.input :photo
+  = f.input :violation_id
   .form-actions
-    = f.button :submit
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), photos_path, :class => 'btn'

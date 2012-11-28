@@ -1,6 +1,25 @@
-%p#notice= notice
+- model_class = Photo
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
+%p
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
+  = @photo.title
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = @photo.description
+%p
+  %strong= model_class.human_attribute_name(:photo) + ':'
+  %br
+  = @photo.photo
+%p
+  %strong= model_class.human_attribute_name(:violation_id) + ':'
+  %br
+  = @photo.violation_id
 
-= link_to 'Edit', edit_photo_path(@photo)
-\|
-= link_to 'Back', photos_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), photos_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_photo_path(@photo), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), photo_path(@photo), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

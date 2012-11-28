@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :title, :description
+  attr_accessible :title, :description, :violation_id
 
   belongs_to :violation
 

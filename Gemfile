@@ -31,6 +31,7 @@ gem 'haml-rails', :group => :development
 gem 'simple_form'
 gem 'cancan'
 gem 'carrierwave'
+gem 'mini_magick'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

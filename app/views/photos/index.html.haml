@@ -1,17 +1,27 @@
-%h1 Listing photos
-
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @photos.each do |photo|
+- model_class = Photo
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
     %tr
-      %td= link_to 'Show', photo
-      %td= link_to 'Edit', edit_photo_path(photo)
-      %td= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:photo)
+      %th= model_class.human_attribute_name(:violation_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @photos.each do |photo|
+      %tr
+        %td= link_to photo.id, photo_path(photo)
+        %td= photo.title
+        %td= photo.description
+        %td= photo.photo
+        %td= photo.violation_id
+        %td=l photo.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_photo_path(photo), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), photo_path(photo), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%br
-
-= link_to 'New Photo', new_photo_path
+= link_to t('.new', :default => t("helpers.links.new")), new_photo_path, :class => 'btn btn-primary'
