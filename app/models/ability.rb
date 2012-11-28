@@ -22,6 +22,7 @@ class Ability
     unless user.id == nil
       # Users can manage their own violations
       can [:update, :destroy], Violation, :user_id => user.id
+      can [:update, :destroy], Photo, :user_id => user.id
     end
 
     #
