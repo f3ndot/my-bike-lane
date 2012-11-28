@@ -12,6 +12,8 @@ class Ability
       # Globally allow all to see
       can :read, :all
       can :create, Violation
+      cannot :manage, Announcement
+      can :hide, Announcement
     end
 
     # Don't let a guest user behave like a regular user
