@@ -39,3 +39,6 @@ header .navbar .avatar-url {
 .announcement.alert {
   border-radius: 0px
 }
+.announcement.alert a {
+  font-weight: bold;
+}

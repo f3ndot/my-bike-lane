@@ -4,7 +4,7 @@
       - Announcement.current(cookies.signed[:hidden_announcement_ids]).each do |a|
         .announcement-text
           = link_to "×", hide_announcement_path(a), :class => "close", :title => "Hide Announcement", :rel => "bottom-tooltip"
-          = a.message
+          = a.message.html_safe
 
 %header.container
   .navbar
