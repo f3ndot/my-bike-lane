@@ -11,7 +11,7 @@
             = link_to image_tag(avatar_url(violation.user, 65), :alt => "", :title => ""), user_path(violation.user), :rel => "avatar-tooltip", :title => violation.user.display_name(false)
       .span11
         .violation-item.clearfix
-          %strong= link_to violation.title, violation_path(violation)
+          %strong.title= link_to violation.title, violation_path(violation)
           - if can? :update, violation
             .actions.pull-right
               = link_to "<i class='icon-pencil'></i> Edit".html_safe, edit_violation_path(violation), :class => 'btn btn-mini'
@@ -21,5 +21,8 @@
             %a{:href => "#", :rel => "tooltip", :title => "#{violation.created_at}"}= time_ago_in_words violation.created_at
             ago
         .violation-pictures
-          - violation.photos.each do |photo|
-            = raise photo.to_yaml
+          - violation.photos.each_with_index do |photo,index|
+            - if index == 0
+              .display= link_to image_tag(photo.image, :class => "img-polaroid"), violation_path(violation)
+            - else
+              .pictures= image_tag photo.image, :width => 161
