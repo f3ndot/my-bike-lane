@@ -66,5 +66,5 @@ MyBikeLane::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Default URL for Devise
-  config.action_mailer.default_url_options = { :host => 'mybikelane.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'mybikelane-staging.herokuapp.com' }
 end
