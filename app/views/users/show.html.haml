@@ -8,7 +8,7 @@
     .well
       .control-group
         .control-label
-          = image_tag avatar_url(current_user, 256), :class => "img-polaroid"
+          = image_tag avatar_url(@user, 256), :class => "img-polaroid"
         .controls
           - if @user.admin?
             .label.label-important
