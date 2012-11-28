@@ -25,7 +25,9 @@
 
       .control-group
         .control-label Name
-        .controls= @user.given_name << " " << @user.family_name
+        .controls
+          = @user.given_name
+          = @user.family_name
 
       .control-group
         .control-label Age
