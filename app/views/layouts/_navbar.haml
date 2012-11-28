@@ -1,10 +1,10 @@
 - if Announcement.current(cookies.signed[:hidden_announcement_ids]).count > 0
-  .alert.alert-block.alert-info.announcement
+  .alert.alert-info.announcement
     .container
-      %h4 Heads Up!
       - Announcement.current(cookies.signed[:hidden_announcement_ids]).each do |a|
-        = link_to "×", hide_announcement_path(a), :class => "close"
-        = a.message
+        .announcement-text
+          = link_to "×", hide_announcement_path(a), :class => "close", :title => "Hide Announcement", :rel => "bottom-tooltip"
+          = a.message
 
 %header.container
   .navbar
