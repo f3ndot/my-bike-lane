@@ -23,6 +23,7 @@ These features are listed in no particular order:
 - Developer API
 - Commenting
 - User profiles
+- User profiles privacy settings
 - Awards / Leaderboards
 - Google Maps mapping of data
 - Violators *(eg a car)* and Violators Groups *(eg Canada Post)*
