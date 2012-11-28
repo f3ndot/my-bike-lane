@@ -27,6 +27,7 @@ class ViolationsController < ApplicationController
   # GET /violations/new.json
   def new
     @violation = Violation.new
+    @violation.photos.build
 
     respond_to do |format|
       format.html # new.html.erb

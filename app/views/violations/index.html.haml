@@ -20,3 +20,6 @@
             posted
             %a{:href => "#", :rel => "tooltip", :title => "#{violation.created_at}"}= time_ago_in_words violation.created_at
             ago
+        .violation-pictures
+          - violation.photos.each do |photo|
+            = raise photo.to_yaml
