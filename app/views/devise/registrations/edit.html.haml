@@ -10,9 +10,18 @@
       - if resource.admin?
         .control-group
           .controls
-            %p.text-info
+            .label.label-important
               %i.icon-legal
               This user is an administrator
+      .control-group
+        .control-label
+          = image_tag avatar_url(current_user, 64), :class => "img-polaroid"
+        .controls
+          %p
+            .label.label-info Just so you know
+          %p
+            Avatars are set and managed by
+            = link_to "Gravatar", "https://en.gravatar.com/"
       = f.input :username, :disabled => true
       = f.input :email, :required => true, :autofocus => true
       = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
@@ -23,7 +32,7 @@
     = f.input :birthday, :as => :date, :start_year => Date.today.year - 90, :end_year => Date.today.year - 12, :order => [:month, :day, :year]
     = f.input :gender, :as => :radio, :collection => %w(Male Female Other)
     = f.input :hometown
-    = f.input :bio, :input_html => {:class => "span7", :rows => 10}
+    = f.input :bio, :input_html => {:class => "span9", :rows => 10}
     %hr
     = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
 

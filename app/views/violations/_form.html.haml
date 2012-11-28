@@ -1,9 +1,17 @@
 = simple_form_for @violation, :html => { :class => 'form-horizontal' } do |f|
 
+  - if current_user.nil?
+    .lead
+      %i.icon-bullhorn
+      Hey! You're currently submitting as a guest! Why not
+      = link_to "Login", new_user_session_path, :class => "btn"
+      or
+      = link_to "Sign Up", new_user_session_path, :class => "btn"
+
   .form-inputs
     = f.input :title
-    = f.input :description
-    = f.input :address
+    = f.input :description, :input_html => {:class => "span9", :rows => 5}
+    = f.input :address, :label => "Address or Major Intersections", :input_html => {:placeholder => "Yonge St. and Dundas St."}
     = f.input :violator_id
 
   .form-actions

@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def avatar_url(user, size = 48)
-    default_url = "#{root_url}/assets/default_avatar.jpg"
+    default_url = "#{root_url}/assets/default_avatar.png"
     if user.nil?
       default_url
     else
