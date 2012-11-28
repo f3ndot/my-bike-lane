@@ -28,7 +28,14 @@
   padding-left: 0;
 }
 
+header {
+  margin-top: 20px;
+}
 header .navbar .avatar-url {
   border-radius: 2px;
   margin-right: 2px;
+}
+
+.announcement.alert {
+  border-radius: 0px
 }
