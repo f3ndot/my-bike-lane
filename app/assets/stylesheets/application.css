@@ -42,3 +42,11 @@ header .navbar .avatar-url {
 .announcement.alert a {
   font-weight: bold;
 }
+
+.user-profile-form.form-horizontal .control-label {
+  padding-top: 0px;
+}
+
+.user-profile-form .control-label {
+  color: #777;
+}

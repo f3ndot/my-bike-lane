@@ -1,0 +1,13 @@
+.users
+
+  - @users.each do |user|
+    .row
+      .span1
+        .author
+          = link_to image_tag(avatar_url(user, 65), :alt => "", :title => ""), user_path(user), :rel => "bottom-tooltip", :title => user.display_name(false)
+      .span9
+        %p.lead= user.display_name
+        %p
+          = user.violations.count
+          Submissions
+    %hr

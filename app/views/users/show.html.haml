@@ -1,0 +1,45 @@
+%h2
+  = "#{@user.username}'s"
+  Profile
+
+.form-horizontal.user-profile-form
+
+  .form-inputs
+    .well
+      .control-group
+        .control-label
+          = image_tag avatar_url(current_user, 256), :class => "img-polaroid"
+        .controls
+          - if @user.admin?
+            .label.label-important
+              %i.icon-legal
+              This user is an administrator
+          %p
+            .label.label-info
+              %i.icon-beaker
+              This user is an early adopter
+
+      .control-group
+        .control-label Username
+        .controls= @user.username
+
+      .control-group
+        .control-label Name
+        .controls= @user.given_name << " " << @user.family_name
+
+      .control-group
+        .control-label Age
+        .controls= @user.age
+
+      .control-group
+        .control-label Sex
+        .controls= @user.gender
+
+      %hr
+
+      .control-group
+        .control-label Submissions
+        .controls= @user.violations.count
+
+  .form-actions
+

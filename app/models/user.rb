@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   def display_name(html = true)
     display = ""
     if html == true
-      display << "<i class='icon-star'></i>" if admin?
+      display << "<i class='icon-star'></i> " if admin?
     end
     if given_name.present? && family_name.present?
       display << "#{given_name} #{family_name}"
