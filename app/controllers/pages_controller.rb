@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  load_and_authorize_resource
+
   def robots
     robots = File.read(Rails.root + "config/robots.#{Rails.env}.txt")
     render :text => robots, :layout => false, :content_type => "text/plain"

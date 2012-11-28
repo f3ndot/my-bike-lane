@@ -14,6 +14,8 @@ class Ability
       can :create, Violation
       cannot :manage, Announcement
       can :hide, Announcement
+      can [:show, :robots], Page
+      cannot :index, Page
     end
 
     # Don't let a guest user behave like a regular user

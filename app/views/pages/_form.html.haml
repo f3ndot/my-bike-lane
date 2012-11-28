@@ -1,10 +1,7 @@
-= simple_form_for(@page) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :title
-    = f.input :body
-    = f.input :published
-
+= simple_form_for @page, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :title
+  = f.input :body
+  = f.input :published
   .form-actions
-    = f.button :submit
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), pages_path, :class => 'btn'
