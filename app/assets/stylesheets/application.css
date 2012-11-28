@@ -18,7 +18,10 @@
   color: #777;
 }
 .footer-links {
-  margin: 10px 0;
+  margin: 15px 0;
+}
+.footer-links ul {
+  margin: 0;
 }
 .footer-links li {
   display: inline;
