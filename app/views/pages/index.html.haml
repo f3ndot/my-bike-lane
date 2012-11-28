@@ -14,8 +14,8 @@
     - @pages.each do |page|
       %tr
         %td= link_to page.id, page_path(page)
-        %td= page.title
-        %td= page.body
+        %td= link_to page.title, public_page_path(page)
+        %td= truncate page.body, :length => 40
         %td= page.published
         %td=l page.created_at
         %td
