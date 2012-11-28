@@ -1,4 +1,7 @@
 MyBikeLane::Application.routes.draw do
+  match '/robots.txt' => 'pages#robots'
+  resources :pages
+
   resources :photos
 
   devise_for :users, :path_prefix => 'my'
