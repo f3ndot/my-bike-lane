@@ -7,7 +7,7 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:title)
       %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:photo)
+      %th= model_class.human_attribute_name(:image)
       %th= model_class.human_attribute_name(:violation_id)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
@@ -17,7 +17,7 @@
         %td= link_to photo.id, photo_path(photo)
         %td= photo.title
         %td= photo.description
-        %td= photo.photo
+        %td= photo.image
         %td= photo.violation_id
         %td=l photo.created_at
         %td

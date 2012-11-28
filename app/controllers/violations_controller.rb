@@ -38,6 +38,7 @@ class ViolationsController < ApplicationController
   # GET /violations/1/edit
   def edit
     @violation = Violation.find(params[:id])
+    @violation.photos.build
   end
 
   # POST /violations
@@ -51,6 +52,7 @@ class ViolationsController < ApplicationController
         format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
         format.json { render json: @violation, status: :created, location: @violation }
       else
+        @violation.photos.build
         format.html { render action: "new" }
         format.json { render json: @violation.errors, status: :unprocessable_entity }
       end
