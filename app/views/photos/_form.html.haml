@@ -1,7 +1,7 @@
-= simple_form_for @photo, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @photo, :html => { :class => 'form-horizontal', :multipart => true } do |f|
   = f.input :title
   = f.input :description
-  = f.input :photo
+  = f.input :image, :as => :image_preview, :input_html => {:preview_version => :thumb}
   = f.input :violation_id
   .form-actions
     = f.button :submit, :class => 'btn-primary'

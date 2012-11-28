@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   :violations
 
   has_many :violations
+  has_many :photos
 
   validates_presence_of :username
   validates_format_of :username, :without => /@/, :message => "cannot contain the '@' symbol"
