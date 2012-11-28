@@ -1,6 +1,8 @@
 MyBikeLane::Application.routes.draw do
   match '/robots.txt' => 'pages#robots'
   resources :pages
+  match 'page/:id', to: 'pages#public_show', as: 'public_page'
+
 
   resources :photos
 

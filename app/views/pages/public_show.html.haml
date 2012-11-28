@@ -1,0 +1,11 @@
+.page
+  .row
+    .span12
+      .page-title.clearfix
+        %p.lead.pull-left= @page.title
+        .muted.datestamp.pull-right= "posted #{l(@page.updated_at)}"
+      %hr.body-divider
+
+  .row
+    .span12
+      .page-body= @page.body
