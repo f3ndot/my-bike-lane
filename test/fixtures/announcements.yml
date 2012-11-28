@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  message: MyText
+  starts_at: 2012-11-27 23:37:48
+  ends_at: 2012-11-27 23:37:48
+
+two:
+  message: MyText
+  starts_at: 2012-11-27 23:37:48
+  ends_at: 2012-11-27 23:37:48
