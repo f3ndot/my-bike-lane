@@ -50,3 +50,8 @@ header .navbar .avatar-url {
 .user-profile-form .control-label {
   color: #777;
 }
+
+.navbar .avatar-url {
+  width: 20px;
+  height: 20px;
+}
