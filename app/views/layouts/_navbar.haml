@@ -1,9 +1,9 @@
-- if Announcement.current.count > 0
-  .alert.alert-info.announcement
+- if Announcement.current(cookies.signed[:hidden_announcement_ids]).count > 0
+  .alert.alert-block.alert-info.announcement
     .container
-      %button{:type => "button", :class => "close", :data => {:dismiss => "alert"}} ×
-      %strong Heads Up!
-      - Announcement.current.each do |a|
+      %h4 Heads Up!
+      - Announcement.current(cookies.signed[:hidden_announcement_ids]).each do |a|
+        = link_to "×", hide_announcement_path(a), :class => "close"
         = a.message
 
 %header.container

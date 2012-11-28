@@ -6,6 +6,8 @@ MyBikeLane::Application.routes.draw do
 
   resources :violations
 
+  match 'announcements/:id/hide', to: 'announcements#hide', as: 'hide_announcement'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
