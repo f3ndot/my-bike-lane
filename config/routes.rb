@@ -1,4 +1,6 @@
 MyBikeLane::Application.routes.draw do
+  resources :photos
+
   devise_for :users, :path_prefix => 'my'
   resources :users, :only => [:index, :show]
 
