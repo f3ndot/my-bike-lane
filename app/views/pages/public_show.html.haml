@@ -3,7 +3,10 @@
     .span12
       .page-title.clearfix
         %p.lead.pull-left= @page.title
-        .muted.datestamp.pull-right= "posted #{l(@page.updated_at)}"
+        - if @page.updated_at == @page.created_at
+          .muted.datestamp.pull-right= "posted #{l(@page.updated_at)}"
+        - else
+          .muted.datestamp.pull-right= "updated #{l(@page.updated_at)}"
       %hr.body-divider
 
   .row

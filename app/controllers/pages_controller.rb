@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   load_and_authorize_resource
+  before_filter :find_public_page, :only => :public_show
 
   def robots
     robots = File.read(Rails.root + "config/robots.#{Rails.env}.txt")
@@ -29,7 +30,7 @@ class PagesController < ApplicationController
   end
 
   def public_show
-    @page = Page.where(:published => true).find(params[:id])
+    @page = Page.published.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -95,6 +96,20 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pages_url }
       format.json { head :no_content }
+    end
+  end
+
+
+  protected
+
+  def find_public_page
+    @page = Page.published.find params[:id]
+
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the page_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if request.path != public_page_path(@page)
+      return redirect_to public_page_path(@page), :status => :moved_permanently
     end
   end
 end
