@@ -10,7 +10,7 @@ jQuery ->
       append: "\n"
 
   $sendFeedbackBtn.click ->
-    return if $sendFeedbackBtn.hasClass 'disabled'
+    return if $feedback.val().length == 0 or $sendFeedbackBtn.hasClass 'disabled'
     $sendFeedbackBtn.addClass 'disabled'
     $sendFeedbackBtn.html 'Sending...'
 
