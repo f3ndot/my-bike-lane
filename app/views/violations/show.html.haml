@@ -26,8 +26,9 @@
               .item.active= image_tag photo.image
             - else
               .item= image_tag photo.image
-        %a.carousel-control.left{href: "#violationCarousel", data: {slide: "prev"}} &lsaquo;
-        %a.carousel-control.right{href: "#violationCarousel", data: {slide: "next"}} &rsaquo;
+        - if @violation.photos.count > 1
+          %a.carousel-control.left{href: "#violationCarousel", data: {slide: "prev"}} &lsaquo;
+          %a.carousel-control.right{href: "#violationCarousel", data: {slide: "next"}} &rsaquo;
 
   .violation-description
     .row
