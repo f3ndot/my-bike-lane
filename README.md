@@ -21,7 +21,6 @@ These features are listed in no particular order:
 - Multiple cities, international support
 - Easier mobile / smartphone support
 - Developer API
-- Commenting
 - User profiles
 - User profiles privacy settings
 - Awards / Leaderboards
