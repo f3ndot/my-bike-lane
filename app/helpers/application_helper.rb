@@ -1,5 +1,11 @@
 module ApplicationHelper
 
+
+  def page_title
+    return @title << " - MyBikeLane Toronto" if defined?(@title)
+    "MyBikeLane Toronto - Get out of my bikelane!"
+  end
+
   def avatar_url(user, size = 48)
     default_url = "#{root_url}/assets/default_avatar.png"
     if user.nil?
