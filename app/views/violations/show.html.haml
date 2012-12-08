@@ -34,7 +34,7 @@
     .row
       .span12
         .bubble
-          .page-body= @violation.description
+          .page-body= @violation.description.present? ? @violation.description : "<em class='muted'>No description provided</em>".html_safe
 
   .disqus-section
     .row
