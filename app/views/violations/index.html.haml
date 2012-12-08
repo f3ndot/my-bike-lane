@@ -26,4 +26,4 @@
             - if index == 0
               .display= link_to image_tag(photo.image, :class => "img-polaroid"), violation_path(violation)
             - else
-              .pictures= image_tag photo.image, :width => 161
+              .pictures= link_to image_tag(photo.image, :width => 161), violation_path(violation)
