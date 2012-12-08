@@ -15,3 +15,4 @@
 //= require jquery-fileupload
 //= require twitter/bootstrap
 //= require_tree .
+//= require jquery.autosize.js
