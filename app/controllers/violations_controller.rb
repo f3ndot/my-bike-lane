@@ -5,7 +5,7 @@ class ViolationsController < ApplicationController
   # GET /violations
   # GET /violations.json
   def index
-    @violations = Violation.all
+    @violations = Violation.order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
