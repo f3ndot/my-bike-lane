@@ -185,6 +185,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   less-rails
+  mail
   mini_magick
   omniauth-twitter
   pg

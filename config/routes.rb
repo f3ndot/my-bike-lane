@@ -14,6 +14,8 @@ MyBikeLane::Application.routes.draw do
   resources :announcements
   match 'announcements/:id/hide', to: 'announcements#hide', as: 'hide_announcement'
 
+  match 'feedback', to: 'application#feedback'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,8 @@
+New Feedback!
+================
+
+<% if @user.present? %>
+  From user: <%= @user.display_name(false) %>
+<% end %>
+
+<%= @message %>
