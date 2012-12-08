@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
 
   validates_presence_of :image
   before_destroy :remove_uploaded_file
-  
+
   # validates_presence_of :violation_id
 
   # Some magic to allow CarrierWave file uploads to work with nested forms
@@ -20,6 +20,25 @@ class Photo < ActiveRecord::Base
   # end
   def remove_uploaded_file
     remove_image!
+  end
+
+  # Override to silently ignore trying to remove missing
+  # previous image when destroying a Photo.
+  def remove_image!
+    begin
+      super
+    rescue Fog::Storage::Rackspace::NotFound
+    end
+  end
+
+  # Override to silently ignore trying to remove missing
+  # previous image when saving a new one.
+  def remove_previously_stored_image
+    begin
+      super
+    rescue Fog::Storage::Rackspace::NotFound
+      @previous_model_for_image = nil
+    end
   end
 
 end
