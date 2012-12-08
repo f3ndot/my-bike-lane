@@ -16,7 +16,7 @@ These features are listed in no particular order:
 - Twitter, Google, Facebook login support
 - User donor badge
 - AJAX-Driven / instant picture upload support
-- Multiple pictures support
+- Better multiple pictures support
 - Cropping, rotating photos
 - Multiple cities, international support
 - Easier mobile / smartphone support
@@ -24,7 +24,7 @@ These features are listed in no particular order:
 - User profiles
 - User profiles privacy settings
 - Awards / Leaderboards
-- Google Maps mapping of data
+- Better Google Maps mapping of data
 - Violators *(eg a car)* and Violators Groups *(eg Canada Post)*
 - Better Statistics
 - Better UI design
