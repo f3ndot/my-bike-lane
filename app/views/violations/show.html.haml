@@ -23,12 +23,32 @@
         .carousel-inner
           - @violation.photos.each_with_index do |photo,index|
             - if index == 0
-              .item.active= image_tag photo.image
+              .item.active= image_tag photo.image, :class => 'img-polaroid'
             - else
-              .item= image_tag photo.image
+              .item= image_tag photo.image, :class => 'img-polaroid'
         - if @violation.photos.count > 1
           %a.carousel-control.left{href: "#violationCarousel", data: {slide: "prev"}} &lsaquo;
           %a.carousel-control.right{href: "#violationCarousel", data: {slide: "next"}} &rsaquo;
+
+  .row
+    .span6
+      #violation_map
+    .span6
+      %dl.dl-horizontal
+        %dt Address or Location
+        %dd#violationAddress= @violation.address
+        %dt License Plate
+        %dd TODO
+        %dt Offender Organization
+        %dd TODO
+        %dt Total Offences
+        %dd TODO
+        %dt Submitted By
+        - if @violation.user.present?
+          %dd= @violation.user.display_name
+        - else
+          %dd
+            %em.muted Anonymous
 
   .violation-description
     .row
