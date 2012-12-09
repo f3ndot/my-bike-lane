@@ -12,4 +12,4 @@
   .row
     .span12
       .bubble
-        .page-body= simple_format @page.body
+        .page-body= @page.body.html_safe
