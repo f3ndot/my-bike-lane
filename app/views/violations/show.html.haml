@@ -54,7 +54,9 @@
           %dd= @violation.violator.violations.count
         %dt Submitted By
         - if @violation.user.present?
-          %dd= @violation.user.display_name
+          %dd
+            = link_to image_tag(avatar_url(@violation.user, 20), {class: "avatar-url"}), user_path(@violation.user)
+            = link_to @violation.user.display_name, user_path(@violation.user)
         - else
           %dd
             %em.muted Anonymous

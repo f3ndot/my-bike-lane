@@ -7,7 +7,6 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:license)
       %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:violation_id)
       %th= model_class.human_attribute_name(:organization_id)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
@@ -17,7 +16,6 @@
         %td= link_to violator.id, violator_path(violator)
         %td= violator.license
         %td= violator.description
-        %td= violator.violation_id
         %td= violator.organization_id
         %td=l violator.created_at
         %td

@@ -18,7 +18,7 @@
       / # = p.association :violation
       = p.input :image, :as => :image_preview, :input_html => {:preview_version => :thumb}
     = f.input :address, :label => "Address or Major Intersections", :input_html => {:placeholder => "Yonge St. and Dundas St."}
-    = f.input :license_plate, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off"}
+    = f.input :license_plate, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off", placeholder: "BHAM 244"}
 
   = f.error :base
 

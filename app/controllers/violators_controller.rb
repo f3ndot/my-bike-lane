@@ -1,4 +1,5 @@
 class ViolatorsController < ApplicationController
+  load_and_authorize_resource
 
   def autocomplete
     @violators = Violator.order(:license).where("license like ?", "%#{params[:term]}%")

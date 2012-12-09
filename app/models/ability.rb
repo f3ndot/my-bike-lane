@@ -12,6 +12,7 @@ class Ability
       # Globally allow all to see
       can :read, :all
       can :create, Violation
+      can [:create, :update, :autocomplete], Violator
       cannot :manage, Announcement
       can :hide, Announcement
       can [:show, :robots], Page

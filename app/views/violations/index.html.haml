@@ -12,6 +12,8 @@
       .span11
         .violation-item.clearfix
           %strong.title= link_to violation.title, violation_path(violation)
+          %span.muted= violation.violator.license if violation.violator.present?
+          %span.muted= "of #{violation.violator.organization.name}" if violation.violator.organization.present?
           - if can? :update, violation
             .actions.pull-right
               = link_to "<i class='icon-pencil'></i> Edit".html_safe, edit_violation_path(violation), :class => 'btn btn-mini'

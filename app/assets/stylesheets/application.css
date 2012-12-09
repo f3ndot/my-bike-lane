@@ -34,8 +34,13 @@
 header {
   margin-top: 20px;
 }
-header .navbar .avatar-url {
+.avatar-url {
   border-radius: 2px;
+
+  width: 20px;
+  height: 20px;
+}
+.navbar .avatar-url {
   margin-right: 2px;
 }
 
@@ -52,9 +57,4 @@ header .navbar .avatar-url {
 
 .user-profile-form .control-label {
   color: #777;
-}
-
-.navbar .avatar-url {
-  width: 20px;
-  height: 20px;
 }

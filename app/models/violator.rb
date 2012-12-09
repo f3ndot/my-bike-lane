@@ -5,4 +5,5 @@ class Violator < ActiveRecord::Base
   belongs_to :organization
 
   validates_presence_of :license
+  validates_uniqueness_of :license
 end
