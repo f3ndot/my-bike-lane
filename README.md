@@ -25,7 +25,8 @@ These features are listed in no particular order:
 - User profiles privacy settings
 - Awards / Leaderboards
 - Better Google Maps mapping of data
-- Violators *(eg a car)* and Violators Groups *(eg Canada Post)*
+- Violators Groups *(eg Canada Post)*
+- Listing of Violators, worst offenders, etc.
 - Better Statistics
 - Better UI design
 - Logo
