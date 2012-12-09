@@ -15,6 +15,8 @@
           %a{href: "/"} Home
         %li
           = link_to "Submit a Violation", new_violation_path
+        %li
+          = link_to "Report to Police", '/page/report-sherbourne-violations-to-police'
       %ul.nav.pull-right
         - if user_signed_in?
           %li.dropdown
