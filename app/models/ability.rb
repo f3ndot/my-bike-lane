@@ -15,7 +15,7 @@ class Ability
       can [:create, :update, :autocomplete], Violator
       cannot :manage, Announcement
       can :hide, Announcement
-      can [:show, :robots], Page
+      can [:show, :robots, :public_show], Page
       cannot :index, Page
     end
 
