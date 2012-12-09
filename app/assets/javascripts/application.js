@@ -16,3 +16,4 @@
 //= require twitter/bootstrap
 //= require_tree .
 //= require jquery.autosize.js
+//= require google-analytics.js
