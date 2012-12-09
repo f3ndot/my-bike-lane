@@ -35,7 +35,7 @@ These features are listed in no particular order:
 A Word on Funding
 ----------------------
 
-I know it's a silly project, but it does cost me money to run. If you have enjoyed using the site please consider buying me a cup of coffee.
+I know it's a silly project, but it does cost me money to run. If you have enjoyed using the site please consider [buying me a cup of coffee](http://www.mybikelane.to/page/support-mybikelane-toronto).
 
 If you'd rather feel warm and fuzzy inside, I'm also fundraising for the [Ride to Conquer Cancer 2013](http://www.conquercancer.ca/goto/justinbull) event:
 
