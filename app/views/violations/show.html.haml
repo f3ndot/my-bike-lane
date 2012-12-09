@@ -38,11 +38,20 @@
         %dt Address or Location
         %dd#violationAddress= @violation.address
         %dt License Plate
-        %dd TODO
-        %dt Offender Organization
-        %dd TODO
-        %dt Total Offences
-        %dd TODO
+        %dd
+          - if @violation.violator.present?
+            = @violation.violator.license
+          - else
+            %em.muted Unknown
+        - if @violation.violator.present?
+          %dt Offender Organization
+          %dd
+            - if @violation.violator.organization.present?
+              = @violation.violator.organization.name
+            - else
+              %em.muted No Organization
+          %dt Total Offences
+          %dd= @violation.violator.violations.count
         %dt Submitted By
         - if @violation.user.present?
           %dd= @violation.user.display_name

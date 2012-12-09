@@ -4,8 +4,8 @@ MyBikeLane Toronto
 The open-source rebuild of the [@gwhalin](https://twitter.com/gwhalin)'s MyBikeLane.com using Ruby on Rails.
 
 ### Available Sites ####
-- [Bleeding-Edge, Testing Site](http://staging.mybikelane.f3ndot.com/)
-- Stable, Live Production Site **(Coming soon)**
+- **[Stable, Live Production Site](http://wwww.mybikelane.to/)**
+- [Bleeding-Edge, Testing Site](http://staging.mybikelane.to/)
 
 
 Upcoming Features

@@ -1,0 +1,27 @@
+- model_class = Violator
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:license)
+      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:violation_id)
+      %th= model_class.human_attribute_name(:organization_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @violators.each do |violator|
+      %tr
+        %td= link_to violator.id, violator_path(violator)
+        %td= violator.license
+        %td= violator.description
+        %td= violator.violation_id
+        %td= violator.organization_id
+        %td=l violator.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_violator_path(violator), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), violator_path(violator), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_violator_path, :class => 'btn btn-primary'

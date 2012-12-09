@@ -1,4 +1,9 @@
 MyBikeLane::Application.routes.draw do
+  resources :organizations
+
+  match 'violators/plates', to: 'violators#autocomplete', as: 'violators_plates'
+  resources :violators
+
   match '/robots.txt' => 'pages#robots'
   resources :pages
   match 'page/:id', to: 'pages#public_show', as: 'public_page'

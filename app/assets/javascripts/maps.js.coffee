@@ -5,7 +5,10 @@ jQuery ->
     center: new google.maps.LatLng(-34.397, 150.644),
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-  map = new google.maps.Map document.getElementById("violation_map"), mapOptions
+
+
+  if document.getElementById("violation_map") != null
+    map = new google.maps.Map document.getElementById("violation_map"), mapOptions
 
   if $('#violationAddress').text().length > 0
     geocoder.geocode {'address': $('#violationAddress').text()}, (results, status) ->
@@ -15,4 +18,4 @@ jQuery ->
           map: map,
           position: results[0].geometry.location
       else
-        alert "Geocode was not successful for the following reason: " + status
+        console.log "Geocode was not successful for the following reason: " + status

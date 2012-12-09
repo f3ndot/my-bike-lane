@@ -6,7 +6,7 @@
       Hey! You're currently submitting as a guest! Why not
       = link_to "Login", new_user_session_path, :class => "btn"
       or
-      = link_to "Sign Up", new_user_session_path, :class => "btn"
+      = link_to "Sign Up", new_user_registration_path, :class => "btn"
 
   = f.error_notification
 
@@ -18,7 +18,7 @@
       / # = p.association :violation
       = p.input :image, :as => :image_preview, :input_html => {:preview_version => :thumb}
     = f.input :address, :label => "Address or Major Intersections", :input_html => {:placeholder => "Yonge St. and Dundas St."}
-    = f.input :violator_id
+    = f.input :license_plate, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off"}
 
   = f.error :base
 

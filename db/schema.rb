@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128191200) do
+ActiveRecord::Schema.define(:version => 20121209184618) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20121128191200) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -101,5 +108,15 @@ ActiveRecord::Schema.define(:version => 20121128191200) do
   add_index "violations", ["slug"], :name => "index_violations_on_slug", :unique => true
   add_index "violations", ["user_id"], :name => "index_violations_on_user_id"
   add_index "violations", ["violator_id"], :name => "index_violations_on_violator_id"
+
+  create_table "violators", :force => true do |t|
+    t.string   "license"
+    t.text     "description"
+    t.integer  "organization_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "violators", ["organization_id"], :name => "index_violators_on_organization_id"
 
 end
