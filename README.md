@@ -13,7 +13,8 @@ Upcoming Features
 
 These features are listed in no particular order:
 
-- Twitter, Google, Facebook login support
+- Ability to sync existing accounts to Twitter, Facebook, Google logins
+- Google and Facebook login support
 - User donor badge
 - AJAX-Driven / instant picture upload support
 - Better multiple pictures support
