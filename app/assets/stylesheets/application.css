@@ -58,3 +58,7 @@ header {
 .user-profile-form .control-label {
   color: #777;
 }
+
+.omniauth-logins {
+  margin-bottom: 20px;
+}
