@@ -11,7 +11,7 @@ MyBikeLane::Application.routes.draw do
 
   resources :photos
 
-  devise_for :users, :path_prefix => 'my'
+  devise_for :users, :path_prefix => 'my', controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   resources :users, :only => [:index, :show]
 
   resources :violations

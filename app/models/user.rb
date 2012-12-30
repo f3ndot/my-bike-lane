@@ -40,6 +40,48 @@ class User < ActiveRecord::Base
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
+  # Twitter and Facebook login stuff
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.username = auth.info.nickname
+      user.bio = auth.info.description
+
+      name_parts = auth.info.name.split " "
+      if name_parts.size > 0
+        user.given_name = name_parts.first
+        user.family_name = name_parts.last if name_parts.count > 1
+      end
+    end
+  end
+
+  # Overriding Devise's create with session for registration completion using Twitter or Facebook
+  def self.new_with_session(params, session)
+    if session['devise.user_attributes']
+      new(session['devise.user_attributes'], without_protection: true) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end
+  end
+
+  # OmniAuth password bypass
+  def password_required?
+    super && provider.blank?
+  end
+
+  # Ignore blank passwords for OmniAuth accounts (FB or Twitter)
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
+  end
+
   # Overriding Devise's method for auth
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209184618) do
+ActiveRecord::Schema.define(:version => 20121230024606) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20121209184618) do
     t.text     "bio"
     t.date     "birthday"
     t.boolean  "admin",                  :default => false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

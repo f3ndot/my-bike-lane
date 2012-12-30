@@ -24,8 +24,12 @@
             = link_to "Gravatar", "https://en.gravatar.com/"
       = f.input :username, :disabled => true
       = f.input :email, :required => true, :autofocus => true
-      = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
-      = f.input :password_confirmation, :required => false
+      - if f.object.password_required?
+        = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
+        = f.input :password_confirmation, :required => false
+      - else
+        .controls
+          %h6 No password since you're using Facebook or Twitter for login!
     %hr
     = f.input :given_name
     = f.input :family_name
@@ -34,7 +38,8 @@
     = f.input :hometown
     = f.input :bio, :input_html => {:class => "span9", :rows => 10}
     %hr
-    = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+    - if f.object.password_required?
+      = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
 
   .form-actions
     = link_to "Back", :back, :class => "btn"
