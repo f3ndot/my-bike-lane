@@ -205,6 +205,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   less-rails
+  libv8 (~> 3.11.8)
   mail
   mini_magick
   omniauth-facebook
