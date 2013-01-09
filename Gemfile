@@ -9,6 +9,10 @@ gem 'sqlite3', :group => :development
 gem 'pg', :group => :staging
 gem 'pg', :group => :production
 
+  # Disabled for Heroku
+group :development do
+  gem 'therubyracer', :platforms => :ruby
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,8 +21,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # Disabled for Heroku
-  gem 'therubyracer', :platforms => :ruby, :group => :development
 
   gem 'uglifier', '>= 1.0.3'
 
