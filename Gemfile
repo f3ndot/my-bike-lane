@@ -9,11 +9,6 @@ gem 'sqlite3', :group => :development
 gem 'pg', :group => :staging
 gem 'pg', :group => :production
 
-  # Disabled for Heroku
-group :development do
-  gem 'therubyracer', :platforms => :ruby
-end
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
