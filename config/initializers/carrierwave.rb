@@ -5,5 +5,5 @@ CarrierWave.configure do |config|
     :rackspace_api_key  => ENV['RACKSPACE_KEY']
   }
   config.fog_directory = ENV['RACKSPACE_CONTAINER']
-  config.fog_host = ENV['RACKSPACE_HOST']
+  config.asset_host = ENV['RACKSPACE_HOST']
 end

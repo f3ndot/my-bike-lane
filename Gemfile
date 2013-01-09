@@ -18,7 +18,7 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # Disabled for Heroku
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby, :group => :development
 
   gem 'uglifier', '>= 1.0.3'
 
