@@ -42,6 +42,15 @@ class ViolationsController < ApplicationController
     @violation.photos.build
   end
 
+  def flag
+    @violation = Violation.find(params[:id])
+    @violation.flagged = true
+    @violation.save!
+    FlagMailer.flag(@violation, current_user).deliver
+
+    render json: {result: "ok"}
+  end
+
   # POST /violations
   # POST /violations.json
   def create

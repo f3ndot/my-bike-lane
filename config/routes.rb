@@ -14,7 +14,11 @@ MyBikeLane::Application.routes.draw do
   devise_for :users, :path_prefix => 'my', controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   resources :users, :only => [:index, :show]
 
-  resources :violations
+  resources :violations do
+    member do
+      get 'flag'
+    end
+  end
 
   resources :announcements
   match 'announcements/:id/hide', to: 'announcements#hide', as: 'hide_announcement'

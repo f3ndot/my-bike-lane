@@ -1,5 +1,5 @@
 class Violation < ActiveRecord::Base
-  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate
+  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged
 
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]

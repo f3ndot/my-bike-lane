@@ -1,0 +1,9 @@
+Violation Flagged!
+==================
+
+<% if @user.present? %>
+Flagged by: <%= @user.display_name(false) %>
+<% end %>
+
+Violation: <%= @violation.title %>
+(<%= violation_url(@violation) %>)

@@ -11,7 +11,7 @@ class Ability
     else
       # Globally allow all to see
       can :read, :all
-      can :create, Violation
+      can [:create, :flag], Violation
       can [:create, :update, :autocomplete], Violator
       cannot :manage, Announcement
       can :hide, Announcement
