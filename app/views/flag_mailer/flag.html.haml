@@ -8,7 +8,7 @@
       %p
         %strong= "From user: #{@user.display_name(false)}"
 
-    %h3= link_to @violation.title, @violation
+    %h3= link_to @violation.title, violation_url(@violation)
     %p= "(#{violation_url(@violation)})"
 
     %hr
