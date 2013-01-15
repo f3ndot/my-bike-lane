@@ -10,3 +10,9 @@
 
     %h3= link_to @violation.title, @violation
     %p= "(#{violation_url(@violation)})"
+
+    %hr
+
+    %p
+      Total flagged violations for review:
+      %strong= flagged_violations_count

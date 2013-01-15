@@ -72,7 +72,7 @@ class ViolationsController < ApplicationController
 
     respond_to do |format|
       if @violation.save
-        format.html { redirect_to @violation, notice: 'Violation is no longer flagged.' }
+        format.html { redirect_to :back, notice: 'Violation is no longer flagged.' }
         format.json { render json: @violation, status: :unflagged, location: @violation }
       else
         format.html { render action: "unflag" }

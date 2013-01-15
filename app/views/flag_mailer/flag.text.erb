@@ -7,3 +7,6 @@ Flagged by: <%= @user.display_name(false) %>
 
 Violation: <%= @violation.title %>
 (<%= violation_url(@violation) %>)
+
+---
+Total flagged violations for review: <%= flagged_violations_count %>
