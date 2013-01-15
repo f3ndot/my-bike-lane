@@ -17,6 +17,10 @@ MyBikeLane::Application.routes.draw do
   resources :violations do
     member do
       get 'flag'
+      get 'unflag'
+    end
+    collection do
+      get 'flagged'
     end
   end
 

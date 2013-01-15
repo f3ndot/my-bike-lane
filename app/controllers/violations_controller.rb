@@ -13,6 +13,14 @@ class ViolationsController < ApplicationController
     end
   end
 
+  def flagged
+    @violations = Violation.where(:flagged => true)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @violations }
+    end
+  end
+
   # GET /violations/1
   # GET /violations/1.json
   def show
@@ -45,11 +53,34 @@ class ViolationsController < ApplicationController
   def flag
     @violation = Violation.find(params[:id])
     @violation.flagged = true
-    @violation.save!
-    FlagMailer.flag(@violation, current_user).deliver
 
-    render json: {result: "ok"}
+    respond_to do |format|
+      if @violation.save
+        FlagMailer.flag(@violation, current_user).deliver
+        format.html { redirect_to @violation, notice: 'Violation has been flagged for review.' }
+        format.json { render json: @violation, status: :flagged, location: @violation }
+      else
+        format.html { render action: "unflag" }
+        format.json { render json: @violation.errors, status: :unprocessable_entity }
+      end
+    end
   end
+
+  def unflag
+    @violation = Violation.find(params[:id])
+    @violation.flagged = false
+
+    respond_to do |format|
+      if @violation.save
+        format.html { redirect_to @violation, notice: 'Violation is no longer flagged.' }
+        format.json { render json: @violation, status: :unflagged, location: @violation }
+      else
+        format.html { render action: "unflag" }
+        format.json { render json: @violation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # POST /violations
   # POST /violations.json
