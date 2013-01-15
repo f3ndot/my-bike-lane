@@ -9,4 +9,4 @@ Violation: <%= @violation.title %>
 (<%= violation_url(@violation) %>)
 
 ---
-Total flagged violations for review: <%= flagged_violations_count %>
+Total flagged violations for review: <%= Violation.where(:flagged => true).count %>

@@ -15,4 +15,4 @@
 
     %p
       Total flagged violations for review:
-      %strong= flagged_violations_count
+      %strong= Violation.where(:flagged => true).count
