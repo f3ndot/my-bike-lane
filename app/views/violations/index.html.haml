@@ -15,11 +15,16 @@
           - if violation.violator.present?
             %span.muted= violation.violator.license
             %span.muted= "of #{violation.violator.organization.name}" if violation.violator.organization.present?
-          - if can? :update, violation
-            .actions.pull-right
+          .actions.pull-right
+            - if can? :update, violation
               = link_to "<i class='icon-pencil'></i> Edit".html_safe, edit_violation_path(violation), :class => 'btn btn-mini'
               - if can? :destroy, violation
                 %strong= link_to "<i class='icon-remove'></i>".html_safe, violation_path(violation), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+            - else
+              - if violation.flagged == true
+                = link_to "<i class='icon-flag'></i> Flagged".html_safe, flag_violation_path(violation), :title => 'Flagged for review', :class => 'btn btn-mini disabled'
+              - else
+                = link_to "<i class='icon-flag'></i>".html_safe, flag_violation_path(violation), :title => 'Flag for review', :class => 'btn btn-mini'
           .pull-right.muted.date
             posted
             %a{:href => "#", :rel => "tooltip", :title => "#{l(violation.created_at)}"}= time_ago_in_words violation.created_at

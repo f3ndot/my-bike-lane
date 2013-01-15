@@ -12,14 +12,14 @@
             = link_to "<i class='icon-remove'></i>".html_safe, violation_path(@violation), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
         .pull-right.datestamp
-          - if @violation.flagged == true
-            = link_to "<i class='icon-flag'></i> Flagged".html_safe, flag_violation_path(@violation), :class => 'btn btn-mini disabled'
-          - else
-            = link_to "<i class='icon-flag'></i>".html_safe, flag_violation_path(@violation), :class => 'btn btn-mini btn-danger'
           - if @violation.updated_at == @violation.created_at
             %span.muted= "posted #{l(@violation.updated_at)}"
           - else
             %span.muted{title: "created #{l(@violation.updated_at)}"}= "updated #{l(@violation.updated_at)}"
+          - if @violation.flagged == true
+            = link_to "<i class='icon-flag'></i> Flagged".html_safe, flag_violation_path(@violation), :title => 'Flagged for review', :class => 'btn btn-mini disabled'
+          - else
+            = link_to "<i class='icon-flag'></i> Flag".html_safe, flag_violation_path(@violation), :title => 'Flag for review', :class => 'btn btn-mini'
       %hr.body-divider
 
   .row
