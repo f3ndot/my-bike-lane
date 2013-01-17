@@ -18,9 +18,12 @@ MyBikeLane::Application.routes.draw do
     member do
       get 'flag'
       get 'unflag'
+      get 'spam'
+      get 'ham'
     end
     collection do
       get 'flagged'
+      get 'spammed'
     end
   end
 

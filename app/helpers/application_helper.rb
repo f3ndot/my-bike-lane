@@ -3,6 +3,9 @@ module ApplicationHelper
   def flagged_violations_count
     @flagged_count ||= Violation.where(:flagged => true).count
   end
+  def spammed_violations_count
+    @spammed_count ||= Violation.where(:spammed => true).count
+  end
 
   def page_title
     return @title << " - MyBikeLane Toronto" if defined?(@title)

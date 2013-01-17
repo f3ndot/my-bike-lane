@@ -5,7 +5,7 @@ class ViolationsController < ApplicationController
   # GET /violations
   # GET /violations.json
   def index
-    @violations = Violation.order("created_at DESC")
+    @violations = Violation.without_spammed.order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +15,14 @@ class ViolationsController < ApplicationController
 
   def flagged
     @violations = Violation.where(:flagged => true)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @violations }
+    end
+  end
+
+  def spammed
+    @violations = Violation.only_spammed
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @violations }
@@ -81,6 +89,35 @@ class ViolationsController < ApplicationController
     end
   end
 
+  def spam
+    @violation = Violation.find(params[:id])
+    @violation.spammed = true
+    respond_to do |format|
+      if @violation.save
+        @violation.spam!
+        format.html { redirect_to '/', notice: 'Violation is marked as spam.' }
+        format.json { render json: @violation, status: :spam, location: '/' }
+      else
+        format.html { render action: "spam" }
+        format.json { render json: @violation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def ham
+    @violation = Violation.only_spammed.find(params[:id])
+    @violation.spammed = false
+    respond_to do |format|
+      if @violation.save
+        @violation.ham!
+        format.html { redirect_to :back, notice: 'Violation is no longer marked as spam.' }
+        format.json { render json: @violation, status: :ham, location: @violation }
+      else
+        format.html { render action: "ham" }
+        format.json { render json: @violation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # POST /violations
   # POST /violations.json
@@ -103,10 +140,10 @@ class ViolationsController < ApplicationController
     respond_to do |format|
       if @violation.save
         if @violation.spammed == true
-          format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
-          format.json { render json: @violation, status: :created, location: @violation }
-        else
           format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }
+          format.json { render json: @violation, status: :spam, location: @violation }
+        else
+          format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
           format.json { render json: @violation, status: :created, location: @violation }
         end
       else

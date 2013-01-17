@@ -7,7 +7,9 @@ class Violation < ActiveRecord::Base
   # anti-spam measures
   include Rakismet::Model
   rakismet_attrs :content => :description
-  default_scope where(:spammed => false)
+  # default_scope where(:spammed => false) # Breaks more than you think
+  scope :only_spammed, lambda { where(:spammed => true) }
+  scope :without_spammed, lambda { where(:spammed => false) }
 
   belongs_to :user
   belongs_to :violator

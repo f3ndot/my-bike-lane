@@ -16,6 +16,14 @@
             %span.muted= "posted #{l(@violation.updated_at)}"
           - else
             %span.muted{title: "created #{l(@violation.updated_at)}"}= "updated #{l(@violation.updated_at)}"
+
+          - if @violation.spammed == true
+            - if can? :ham, @violation
+              = link_to "<i class='icon-ok'></i> Unmark as Spam".html_safe, ham_violation_path(@violation), :title => 'unmark as spam', :class => 'btn btn-mini'
+          - else
+            - if can? :spam, @violation
+              = link_to "<i class='icon-fire'></i> Spam".html_safe, spam_violation_path(@violation), :title => 'Mark as spam', :class => 'btn btn-mini'
+
           - if @violation.flagged == true
             .btn.btn-mini.disabled{:title => 'Flagged for review'}
               %i.icon-flag

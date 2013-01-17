@@ -1,0 +1,26 @@
+- model_class = Violation
+.page-header
+  %h1 Spammed Violations
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:user)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @violations.each do |violation|
+      %tr
+        %td= violation.id
+        %td= link_to violation.title, violation_path(violation)
+        - if violation.user.present?
+          %td
+            = link_to image_tag(avatar_url(violation.user, 20), {class: "avatar-url"}), user_path(violation.user)
+            = link_to violation.user.display_name(false), user_path(violation.user)
+        - else
+          %td.muted
+            %em Anonymous
+        %td
+          = link_to "Unspam", ham_violation_path(violation), :class => 'btn btn-mini btn-info'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_violation_path(violation), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), violation_path(violation), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

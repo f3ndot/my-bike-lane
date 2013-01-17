@@ -33,6 +33,12 @@
                       %i.icon-star
                       Flagged Violations
                       %span.badge.badge-important= flagged_violations_count
+                - if spammed_violations_count > 0
+                  %li
+                    %a{href: spammed_violations_url}
+                      %i.icon-star
+                      Spammed Violations
+                      %span.badge.badge-important= spammed_violations_count
                 %li= link_to "<i class='icon-star'></i> Announcements".html_safe, announcements_path
                 %li= link_to "<i class='icon-star'></i> Pages".html_safe, pages_path
               %li.divider
