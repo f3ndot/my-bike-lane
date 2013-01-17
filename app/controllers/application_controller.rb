@@ -13,4 +13,15 @@ class ApplicationController < ActionController::Base
       format.json { render :json => "Thanks for the feedback!".to_json }
     end
   end
+
+  def url_options
+    case Rails.env
+    when 'development'
+      {:host => 'localhost:3000'}.merge super
+    when 'staging'
+      {:host => 'staging.mybikelane.to'}.merge super
+    when 'production'
+      {:host => 'www.mybikelane.to'}.merge super
+    end
+  end
 end

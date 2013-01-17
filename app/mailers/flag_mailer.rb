@@ -6,4 +6,10 @@ class FlagMailer < ActionMailer::Base
     @user = user
     mail(:to => '"Justin Bull" <me@justinbull.ca>', :subject => "MyBikeLane Violation Flagged!")
   end
+
+  def spam(violation, user)
+    @violation = violation
+    @user = user
+    mail(:to => '"Justin Bull" <me@justinbull.ca>', :subject => "MyBikeLane Violation Spam Detected!")
+  end
 end

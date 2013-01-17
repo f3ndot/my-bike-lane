@@ -1,8 +1,13 @@
 class Violation < ActiveRecord::Base
-  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged
+  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed
 
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]
+
+  # anti-spam measures
+  include Rakismet::Model
+  rakismet_attrs :content => :description
+  default_scope where(:spammed => false)
 
   belongs_to :user
   belongs_to :violator

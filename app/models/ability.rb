@@ -11,7 +11,7 @@ class Ability
     else
       # Globally allow all to see
       can :read, :all
-      can [:create, :flag], Violation
+      can [:create], Violation
       can [:create, :update, :autocomplete], Violator
       cannot :manage, Announcement
       can :hide, Announcement
@@ -24,6 +24,9 @@ class Ability
       # Users can manage their own violations
       can [:update, :destroy], Violation, :user_id => user.id
       can [:update, :destroy], Photo, :user_id => user.id
+
+      # You can only flag if you're a user
+      can :flag, Violation
     end
 
     #

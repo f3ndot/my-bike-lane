@@ -1,0 +1,18 @@
+!!!
+%html{lang:"en"}
+  %head
+    %meta{content:"text/html; charset=UTF-8", http: {equiv: "Content-Type"}}
+  %body
+    %h1 Violation Spam!!!
+    - if @user.present?
+      %p
+        %strong= "From user: #{@user.display_name(false)}"
+
+    %h3= link_to @violation.title, violation_url(@violation)
+    %p= "(#{violation_url(@violation)})"
+
+    %hr
+
+    %p
+      Total spammed violations for review:
+      %strong= Violation.where(:spammed => true).count

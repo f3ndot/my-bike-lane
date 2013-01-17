@@ -1,0 +1,12 @@
+Violation SPAM!!!
+==================
+
+<% if @user.present? %>
+Spam by: <%= @user.display_name(false) %>
+<% end %>
+
+Violation: <%= @violation.title %>
+(<%= violation_url(@violation) %>)
+
+---
+Total spammed violations for review: <%= Violation.where(:spammed => true).count %>

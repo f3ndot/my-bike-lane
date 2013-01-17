@@ -17,9 +17,13 @@
           - else
             %span.muted{title: "created #{l(@violation.updated_at)}"}= "updated #{l(@violation.updated_at)}"
           - if @violation.flagged == true
-            = link_to "<i class='icon-flag'></i> Flagged".html_safe, flag_violation_path(@violation), :title => 'Flagged for review', :class => 'btn btn-mini disabled'
+            .btn.btn-mini.disabled{:title => 'Flagged for review'}
+              %i.icon-flag
+              Flagged
+
           - else
-            = link_to "<i class='icon-flag'></i> Flag".html_safe, flag_violation_path(@violation), :title => 'Flag for review', :class => 'btn btn-mini'
+            - if can? :flag, @violation
+              = link_to "<i class='icon-flag'></i> Flag".html_safe, flag_violation_path(@violation), :title => 'Flag for review', :class => 'btn btn-mini'
       %hr.body-divider
 
   .row

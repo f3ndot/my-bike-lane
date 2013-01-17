@@ -60,7 +60,7 @@ class ViolationsController < ApplicationController
         format.html { redirect_to @violation, notice: 'Violation has been flagged for review.' }
         format.json { render json: @violation, status: :flagged, location: @violation }
       else
-        format.html { render action: "unflag" }
+        format.html { render action: "flag" }
         format.json { render json: @violation.errors, status: :unprocessable_entity }
       end
     end
@@ -88,10 +88,27 @@ class ViolationsController < ApplicationController
     @violation = Violation.new(params[:violation])
     @violation.user = current_user unless current_user.nil?
 
+    @violation.user_ip = request.remote_ip
+    @violation.user_agent = request.env['HTTP_USER_AGENT']
+    @violation.referrer = request.referrer
+
+    puts @violation.attributes
+
+    if @violation.spam?
+      # Notify admin
+      FlagMailer.spam(@violation, current_user).deliver
+      @violation.spammed = true
+    end
+
     respond_to do |format|
       if @violation.save
-        format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
-        format.json { render json: @violation, status: :created, location: @violation }
+        if @violation.spammed == true
+          format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
+          format.json { render json: @violation, status: :created, location: @violation }
+        else
+          format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }
+          format.json { render json: @violation, status: :created, location: @violation }
+        end
       else
         @violation.photos.build
         format.html { render action: "new" }

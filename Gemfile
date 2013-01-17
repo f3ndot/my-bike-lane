@@ -28,6 +28,7 @@ group :assets do
   gem 'jquery-fileupload-rails'
 end
 
+gem 'rakismet'
 gem 'jquery-rails'
 gem 'devise'
 gem 'omniauth-twitter'
