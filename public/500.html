@@ -13,6 +13,25 @@
       border-bottom-color: #999;
     }
     h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+
+    code,
+    pre {
+      padding: 0 3px 2px;
+      font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+      font-size: 12px;
+      color: #333333;
+      -webkit-border-radius: 3px;
+         -moz-border-radius: 3px;
+              border-radius: 3px;
+    }
+
+    code {
+      padding: 2px 4px;
+      color: #d14;
+      white-space: nowrap;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
   </style>
 </head>
 
@@ -20,8 +39,15 @@
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <h1>We're sorry, but something went wrong.</h1>
-    <p>Please take two seconds and email <a href="mailto:me@justinbull.ca">me@justinbull.ca</a> describing your issue:</p>
-    <p>You'll receive a "Bug Hunter" badge to your profile!</p>
+    <p>Please take two seconds and email <a href="mailto:me@justinbull.ca">me@justinbull.ca</a> describing your issue / what you were doing.</p>
+    <p style="margin-bottom:0.5em">Please include this timestamp</p>
+    <div><code id="js-time"></code></div>
+    <p style="margin-top:0.5em">in your email.</p>
+    <p><strong>You'll receive a "Bug Hunter" badge to your profile!</strong></p>
   </div>
+  <script type="text/javascript">
+    var time_html = document.getElementById('js-time')
+    time_html.innerHTML = (new Date()).toUTCString()
+  </script>
 </body>
 </html>

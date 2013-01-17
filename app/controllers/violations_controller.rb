@@ -141,7 +141,7 @@ class ViolationsController < ApplicationController
       if @violation.save
         if @violation.spammed == true
           format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }
-          format.json { render json: @violation, status: :spam, location: @violation }
+          format.json { render json: @violation, status: :spam, location: '/' }
         else
           format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
           format.json { render json: @violation, status: :created, location: @violation }
