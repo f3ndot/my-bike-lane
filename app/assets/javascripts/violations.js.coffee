@@ -4,7 +4,7 @@
 
 jQuery ->
 
-  $('#violation_license_plate').typeahead
+  $('#violation_violator_attributes_license').typeahead
     source: (query, process) ->
       $.get '/violators/plates', {query: query}, (data) ->
         process data.options

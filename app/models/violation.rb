@@ -1,5 +1,5 @@
 class Violation < ActiveRecord::Base
-  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed
+  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed, :violator_attributes
 
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]
@@ -15,7 +15,8 @@ class Violation < ActiveRecord::Base
   belongs_to :violator
   has_many :photos, :dependent => :destroy
 
-  accepts_nested_attributes_for :photos, :allow_destroy => true
+  accepts_nested_attributes_for :photos, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :violator, :allow_destroy => false
 
   validates_presence_of :title, :address
 

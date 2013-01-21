@@ -45,6 +45,7 @@ class ViolationsController < ApplicationController
   def new
     @violation = Violation.new
     @violation.photos.build
+    @violation.build_violator
 
     respond_to do |format|
       format.html # new.html.erb
@@ -55,7 +56,8 @@ class ViolationsController < ApplicationController
   # GET /violations/1/edit
   def edit
     @violation = Violation.find(params[:id])
-    @violation.photos.build
+    @violation.photos.build if @violation.photos.count == 0
+    @violation.build_violator if @violation.nil?
   end
 
   def flag
@@ -129,16 +131,15 @@ class ViolationsController < ApplicationController
     @violation.user_agent = request.env['HTTP_USER_AGENT']
     @violation.referrer = request.referrer
 
-    puts @violation.attributes
-
-    if @violation.spam?
-      # Notify admin
-      FlagMailer.spam(@violation, current_user).deliver
-      @violation.spammed = true
-    end
-
     respond_to do |format|
       if @violation.save
+
+        if @violation.spam?
+          # Notify admin
+          FlagMailer.spam(@violation, current_user).deliver
+          @violation.spammed = true
+        end
+        
         if @violation.spammed == true
           format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }
           format.json { render json: @violation, status: :spam, location: '/' }

@@ -1,0 +1,5 @@
+.nested-fields
+  = f.input :image, :as => :image_preview, :input_html => {:preview_version => :thumb}
+  .controls
+    = link_to_remove_association "Remove picture", f, :class => "btn btn-small"
+    %hr
