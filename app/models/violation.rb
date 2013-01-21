@@ -18,7 +18,7 @@ class Violation < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
 
   accepts_nested_attributes_for :photos, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :violator, :allow_destroy => false
+  accepts_nested_attributes_for :violator, :reject_if => :all_blank, :allow_destroy => false
 
   validates_presence_of :title, :address
 

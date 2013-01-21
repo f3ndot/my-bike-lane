@@ -28,8 +28,7 @@
       .controls
         = link_to_add_association 'Add another picture', f, :photos, :class => 'btn btn-primary'
     %p.lead Violator Information
-    = f.simple_fields_for :violator do |v|
-      = v.input :license, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off", placeholder: "BHAM 244"}
+    = f.input :license_plate, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off", placeholder: "BHAM 244"}
 
   = f.error :base
 
