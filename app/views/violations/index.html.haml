@@ -41,4 +41,5 @@
                   = link_to image_tag(photo.image, :width => 161), violation_path(violation)
 
 .violation-pagination
+  %p.muted= page_entries_info @violations
   = will_paginate @violations, :renderer => BootstrapPagination::Rails

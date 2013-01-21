@@ -5,7 +5,7 @@ class ViolationsController < ApplicationController
   # GET /violations
   # GET /violations.json
   def index
-    @violations = Violation.without_spammed.page(params[:page]).order("created_at DESC")
+    @violations = Violation.without_spammed.order("created_at DESC").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
