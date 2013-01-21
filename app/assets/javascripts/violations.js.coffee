@@ -8,3 +8,6 @@ jQuery ->
     source: (query, process) ->
       $.get '/violators/plates', {query: query}, (data) ->
         process data.options
+    updater: (item) ->
+      
+      item

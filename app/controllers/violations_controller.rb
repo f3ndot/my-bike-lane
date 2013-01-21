@@ -130,17 +130,12 @@ class ViolationsController < ApplicationController
     @violation.user_ip = request.remote_ip
     @violation.user_agent = request.env['HTTP_USER_AGENT']
     @violation.referrer = request.referrer
+    @violation.spammed = @violation.spam?
 
     respond_to do |format|
-      if @violation.save
-
-        if @violation.spam?
-          # Notify admin
-          FlagMailer.spam(@violation, current_user).deliver
-          @violation.spammed = true
-        end
-        
+      if @violation.save        
         if @violation.spammed == true
+          FlagMailer.spam(@violation, current_user).deliver
           format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }
           format.json { render json: @violation, status: :spam, location: '/' }
         else

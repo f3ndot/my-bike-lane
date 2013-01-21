@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117194813) do
+ActiveRecord::Schema.define(:version => 20130121022637) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -122,8 +122,10 @@ ActiveRecord::Schema.define(:version => 20130117194813) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "slug"
   end
 
   add_index "violators", ["organization_id"], :name => "index_violators_on_organization_id"
+  add_index "violators", ["slug"], :name => "index_violators_on_slug", :unique => true
 
 end
