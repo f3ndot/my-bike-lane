@@ -67,6 +67,10 @@ header {
   margin-bottom: 0;
 }
 
+.violation-pagination p {
+  text-align: center;
+}
+
 .violation-pagination .pagination,
 .violation-pagination .pagination ul {
     float: left;
