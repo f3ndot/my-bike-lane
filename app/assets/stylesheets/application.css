@@ -66,3 +66,11 @@ header {
 .page-header p.lead {
   margin-bottom: 0;
 }
+
+.violation-pagination .pagination,
+.violation-pagination .pagination ul {
+    float: left;
+    position: relative;
+}
+.violation-pagination .pagination { left: 50%; }
+.violation-pagination .pagination ul { left: -50%; }

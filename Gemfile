@@ -29,6 +29,8 @@ group :assets do
   gem 'jquery-fileupload-rails'
 end
 
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
 gem 'cocoon'
 gem 'rakismet'
 gem 'jquery-rails'

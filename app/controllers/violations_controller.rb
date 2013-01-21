@@ -5,7 +5,7 @@ class ViolationsController < ApplicationController
   # GET /violations
   # GET /violations.json
   def index
-    @violations = Violation.without_spammed.order("created_at DESC")
+    @violations = Violation.without_spammed.page(params[:page]).order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -133,7 +133,7 @@ class ViolationsController < ApplicationController
     @violation.spammed = @violation.spam?
 
     respond_to do |format|
-      if @violation.save        
+      if @violation.save
         if @violation.spammed == true
           FlagMailer.spam(@violation, current_user).deliver
           format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }

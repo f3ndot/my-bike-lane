@@ -4,6 +4,8 @@ class Violation < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]
 
+  self.per_page = 10
+
   # anti-spam measures
   include Rakismet::Model
   rakismet_attrs :content => :description
