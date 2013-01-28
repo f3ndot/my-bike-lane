@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :violations
   has_many :photos
 
+  acts_as_voter
+  has_karma(:violations, :as => :user)
+
   validates_presence_of :username
   validates_format_of :username, :without => /@/, :message => "cannot contain the '@' symbol"
   validates_uniqueness_of :username

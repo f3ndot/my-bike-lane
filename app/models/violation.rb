@@ -13,6 +13,8 @@ class Violation < ActiveRecord::Base
   scope :only_spammed, lambda { where(:spammed => true) }
   scope :without_spammed, lambda { where(:spammed => false) }
 
+  acts_as_voteable
+
   belongs_to :user
   belongs_to :violator
   has_many :photos, :dependent => :destroy
