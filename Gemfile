@@ -32,7 +32,7 @@ end
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'cocoon'
-gem 'thumbs_up'
+gem 'thumbs_up', :git => 'git@github.com:f3ndot/thumbs_up.git'
 gem 'rakismet'
 gem 'jquery-rails'
 gem 'devise'

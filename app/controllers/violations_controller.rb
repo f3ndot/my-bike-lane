@@ -36,7 +36,7 @@ class ViolationsController < ApplicationController
   # GET /violations
   # GET /violations.json
   def index
-    @violations = Violation.without_spammed.tally.order("created_at DESC").page(params[:page])
+    @violations = Violation.without_spammed.with_plusminus.order("created_at DESC").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
