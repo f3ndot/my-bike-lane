@@ -16,6 +16,9 @@ MyBikeLane::Application.routes.draw do
 
   resources :violations do
     member do
+      get 'up_vote'
+      get 'down_vote'
+      get 'un_vote'
       get 'flag'
       get 'unflag'
       get 'spam'

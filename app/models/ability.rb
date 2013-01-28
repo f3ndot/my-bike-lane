@@ -26,7 +26,7 @@ class Ability
       can [:update, :destroy], Photo, :user_id => user.id
 
       # You can only flag if you're a user
-      can :flag, Violation
+      can [:flag, :up_vote, :down_vote], Violation
     end
 
     #

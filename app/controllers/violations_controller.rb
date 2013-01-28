@@ -2,6 +2,37 @@ class ViolationsController < ApplicationController
   load_and_authorize_resource
   before_filter :find_violation, :only => [:show]
 
+  def up_vote
+    violation = Violation.find(params[:id])
+    begin
+      vote = current_user.vote_for violation
+      render json: {status: 'upvoted', message: 'Successfully up-voted', vote: vote}
+    rescue ActiveRecord::RecordInvalid
+      render json: {status: 'error', message: 'You have already up-voted this violation'}
+    end
+  end
+
+  def down_vote
+    violation = Violation.find(params[:id])
+    begin
+      vote = current_user.vote_against violation
+      render json: {status: 'downvoted', message: 'Successfully down-voted', vote: vote}
+    rescue ActiveRecord::RecordInvalid
+      render json: {status: 'error', message: 'You have already down-voted this violation'}
+    end
+  end
+
+  def un_vote
+    violation = Violation.find(params[:id])
+    begin
+      vote = current_user.unvote_for violation
+      render json: {status: 'unvoted', message: 'Successfully removed your vote', vote: vote}
+    rescue ActiveRecord::RecordInvalid
+      render json: {status: 'error', message: 'You have already undone your vote'}
+    end
+  end
+
+
   # GET /violations
   # GET /violations.json
   def index
