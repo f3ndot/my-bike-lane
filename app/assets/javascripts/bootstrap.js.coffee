@@ -5,6 +5,8 @@ jQuery ->
 
   $("a[rel=bottom-tooltip]").tooltip
     placement: "bottom"
+  $("a[rel=right-tooltip]").tooltip
+    placement: "right"
 
   $('.announcement-text .close').click (e) ->
     e.preventDefault()
@@ -12,4 +14,4 @@ jQuery ->
     $announcement = $btn.parent()
     $.get $btn.attr('href'), (data) ->
       $announcement.fadeOut ->
-        $('.announcement').fadeOut() if $('.announcement-text:visible').length < 1  
+        $('.announcement').fadeOut() if $('.announcement-text:visible').length < 1

@@ -9,6 +9,10 @@
             %a{:href => "#", :rel => "bottom-tooltip", :title => "Anonymous"}= image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar", :alt => "", :title => "")
           - else
             = link_to image_tag(avatar_url(violation.user, 65), :alt => "", :title => ""), user_path(violation.user), :rel => "bottom-tooltip", :title => violation.user.display_name(false)
+        .voting
+          %a.arrow-n{href: '#'}
+          .vote-tally 999
+          %a.arrow-s{href: '#', title: "This post is of bad quality or the vehicle was in the right", rel: 'right-tooltip'}
       .span11
         .violation-item.clearfix
           %strong.title= link_to violation.title, violation_path(violation)

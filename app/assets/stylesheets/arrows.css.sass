@@ -1,0 +1,62 @@
+.voting
+  text-align: center
+  font-size: 30px
+  .vote-tally
+    padding: 10px 0
+
+.arrow-n,
+.arrow-e,
+.arrow-s,
+.arrow-w
+  border-style: dashed
+  border-color: transparent
+  border-width: 0.95em
+  display: -moz-inline-box
+  display: inline-block
+  /* Use font-size to control the size of the arrow. */
+  font-size: 17px
+  height: 0
+  line-height: 0
+  position: relative
+  vertical-align: middle
+  width: 0
+
+.arrow-n
+  border-bottom-width: 1em
+  border-bottom-style: solid
+  border-bottom-color: #999
+  bottom: 0.25em
+  &:hover
+    border-bottom-color: #818185
+  &.voted
+    border-bottom-color: #0088cc
+
+.arrow-e
+  border-left-width: 1em
+  border-left-style: solid
+  border-left-color: #999
+  left: 0.25em
+  &:hover
+    border-left-color: #818185
+  &.voted
+    border-left-color: #0088cc
+
+.arrow-s
+  border-top-width: 1em
+  border-top-style: solid
+  border-top-color: #999
+  top: 0.25em
+  &:hover
+    border-top-color: #818185
+  &.voted
+    border-top-color: #0088cc
+
+.arrow-w
+  border-right-width: 1em
+  border-right-style: solid
+  border-right-color: #999
+  right: 0.25em
+  &:hover
+    border-right-color: #818185
+  &.voted
+    border-right-color: #0088cc
