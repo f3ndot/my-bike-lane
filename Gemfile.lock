@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:f3ndot/thumbs_up.git
+  remote: git://github.com/f3ndot/thumbs_up.git
   revision: 583a2da814bd9e15b94d2bc5cf81ed14d8fb5504
   specs:
     thumbs_up (0.6.3)
