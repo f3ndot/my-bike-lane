@@ -5,6 +5,8 @@ jQuery ->
 
   $("a[rel=bottom-tooltip]").tooltip
     placement: "bottom"
+  $("textarea[rel=tooltip]").tooltip
+    placement: "top"
   $("a[rel=right-tooltip]").tooltip
     placement: "right"
 
