@@ -10,12 +10,12 @@
           - else
             = link_to image_tag(avatar_url(violation.user, 65), :alt => "", :title => ""), user_path(violation.user), :rel => "bottom-tooltip", :title => violation.user.display_name(false)
         .voting
-          - if current_user.voted_for? violation
+          - if current_user.present? and current_user.voted_for? violation
             %a.arrow-n.voted{href: un_vote_violation_path(violation), rel: 'right-tooltip', title: 'Undo your vote', data: {unvote: un_vote_violation_path(violation)}}
           - else
             %a.arrow-n{href: up_vote_violation_path(violation), rel: 'right-tooltip'}
           .vote-tally= violation.plusminus
-          - if current_user.voted_against? violation
+          - if current_user.present? and current_user.voted_against? violation
             %a.arrow-s.voted{href: un_vote_violation_path(violation), title: "Undo your vote", rel: 'right-tooltip', data: {unvote: un_vote_violation_path(violation)}}
           - else
             %a.arrow-s{href: down_vote_violation_path(violation), title: "This post is of bad quality or the vehicle was in the right", rel: 'right-tooltip'}
