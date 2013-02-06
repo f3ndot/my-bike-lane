@@ -20,7 +20,17 @@
   .form-inputs
     = f.input :title
     = f.input :description, :input_html => {:class => "span9", :rows => 5}
-    = f.input :address, :label => "Address or Major Intersections", :input_html => {:placeholder => "Yonge St. and Dundas St."}
+    .row
+      .span6
+        = f.input :address, :label => "Address or Major Intersections", :input_html => {:placeholder => "Yonge St. and Dundas St."}
+        = f.input :city, :label => "GTA City", :selected => "Toronto", :collection => Violation::GTA_CITIES, :include_blank => false
+        = f.input :latitude, :as => :hidden
+        = f.input :longitude, :as => :hidden
+      .span6
+        %p
+          %strong Address Preview
+          %span#preview_map_updating.label.label-info{style: 'display:none;'} Updating...
+        #preview_map.mapfix{style: 'height:250px;'}
     %p.lead Photographic Evidence
     = f.simple_fields_for :photos do |p|
       = render 'photo_fields', :f => p

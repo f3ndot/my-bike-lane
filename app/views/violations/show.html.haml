@@ -49,11 +49,11 @@
 
   .row
     .span6
-      #violation_map
+      #violation_map.mapfix
     .span6
       %dl.dl-horizontal
         %dt Address or Location
-        %dd#violationAddress= @violation.address
+        %dd#violationAddress{data: {latitude: @violation.latitude, longitude: @violation.longitude}}= @violation.full_address
         %dt License Plate
         %dd
           - if @violation.violator.present?

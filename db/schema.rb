@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128165018) do
+ActiveRecord::Schema.define(:version => 20130206204715) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -110,6 +110,9 @@ ActiveRecord::Schema.define(:version => 20130128165018) do
     t.string   "user_agent"
     t.string   "referrer"
     t.boolean  "spammed",     :default => false
+    t.string   "city"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "violations", ["slug"], :name => "index_violations_on_slug", :unique => true

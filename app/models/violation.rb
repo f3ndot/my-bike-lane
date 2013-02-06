@@ -1,10 +1,12 @@
 class Violation < ActiveRecord::Base
-  attr_accessible :address, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed, :violator_attributes
+  attr_accessible :address, :city, :latitude, :longitude, :description, :title, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed, :violator_attributes
 
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]
 
   self.per_page = 10
+
+  GTA_CITIES = %w(Toronto Markham Vaughan King Newmarket Aurora Richmond\ Hill Whitchurch-Stouffville East\ Gwillimbury Georgina Brock Uxbridge Scugog Pickering Ajax Whitby Oshawa Clarington Caledon Brampton Mississauga Oakville Milton Halton\ Hills Burlington).sort
 
   # anti-spam measures
   include Rakismet::Model
@@ -22,7 +24,11 @@ class Violation < ActiveRecord::Base
   accepts_nested_attributes_for :photos, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :violator, :reject_if => :all_blank, :allow_destroy => false
 
-  validates_presence_of :title, :address
+  validates_presence_of :title, :address, :city
+
+  def full_address
+    GTA_CITIES.include?(city) ? "#{address}, #{city}" : address
+  end
 
   def license_plate
     violator.try(:license)

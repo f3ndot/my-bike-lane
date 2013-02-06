@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require jquery-fileupload
 //= require twitter/bootstrap
+//= require console.js
 //= require_tree .
 //= require jquery.autosize.js
+//= require jquery.ba-throttle-debounce.min.js
 //= require google-analytics.js
 //= require cocoon
