@@ -77,6 +77,12 @@
         - else
           %dd
             %em.muted Anonymous
+        %dt Votes
+        %dd
+          %strong
+            = @violation.plusminus
+            points
+          %span.muted= "(#{@violation.votes_for} for / #{@violation.votes_for} against)"
 
   .violation-description
     .row
