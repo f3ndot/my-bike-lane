@@ -40,12 +40,20 @@ jQuery ->
       zoom: 13,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       streetViewControl: false,
-      mapTypeControl: false
+      mapTypeControl: false,
+      scrollwheel: false
 
     preview_marker = new google.maps.Marker
       map: preview_map,
       position: default_latlng,
       visible: false
+
+    if $('#violation_address').val().length > 0
+      saved_latlng = new google.maps.LatLng $('#violation_latitude').val(), $('#violation_longitude').val()
+      preview_map.setCenter saved_latlng
+      preview_map.setZoom 15
+      preview_marker.setPosition saved_latlng
+      preview_marker.setVisible true
 
     $('#violation_address').on 'keyup', $.debounce(500, ->
       addr = $(this).val()
