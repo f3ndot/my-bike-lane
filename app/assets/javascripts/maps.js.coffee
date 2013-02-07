@@ -78,12 +78,6 @@ jQuery ->
     heatmapData = []
     heatmapBounds = new google.maps.LatLngBounds()
 
-    $.getJSON '/violations/heatmap.json', (data, textStatus, jqXHR) ->
-      for v in data.violations
-        vLatLng = new google.maps.LatLng v.latitude, v.longitude
-        heatmapData.push vLatLng
-        heatmapBounds.extend vLatLng
-
     heatmap = new google.maps.Map document.getElementById("violation_heatmap"),
       center: default_latlng,
       zoom: 12,
@@ -91,9 +85,15 @@ jQuery ->
       streetViewControl: false,
       mapTypeControl: false
 
-    heatmap_layer = new google.maps.visualization.HeatmapLayer
-      data: heatmapData
+    $.getJSON '/violations/heatmap.json', (data, textStatus, jqXHR) ->
+      for v in data.violations
+        vLatLng = new google.maps.LatLng v.latitude, v.longitude
+        heatmapData.push vLatLng
+        heatmapBounds.extend vLatLng
 
-    heatmap.setCenter heatmapBounds.getCenter()
-    heatmap.fitBounds heatmapBounds
-    heatmap_layer.setMap heatmap
+      heatmap_layer = new google.maps.visualization.HeatmapLayer
+        data: heatmapData
+
+      heatmap.setCenter heatmapBounds.getCenter()
+      heatmap.fitBounds heatmapBounds
+      heatmap_layer.setMap heatmap
