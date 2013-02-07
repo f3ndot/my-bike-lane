@@ -45,7 +45,7 @@ class ViolationsController < ApplicationController
   end
 
   def heatmap
-    @violations = Violation.without_spammed.order("created_at DESC")
+    @violations = Violation.without_spammed.where('longitude NOT ? OR longitude NOT ?', nil, nil).order("created_at DESC")
   end
 
   def flagged

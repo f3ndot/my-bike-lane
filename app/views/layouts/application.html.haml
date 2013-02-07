@@ -7,7 +7,7 @@
     %meta{name:"description", content:"Get out of my bike lane!"}
     %meta{name:"author", content:"Justin Bull"}
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyAQOt7lg2Dvzq7gcj53m5ineovFvNhI74o&sensor=false"
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyAQOt7lg2Dvzq7gcj53m5ineovFvNhI74o&sensor=false"
     = javascript_include_tag "application"
 
     = csrf_meta_tags
@@ -33,10 +33,10 @@
           = yield
         .span4
           .well.well-small
-            %h3 Violation Heatmap
+            %h4 Violation Heatmap
             #violation_heatmap.mapfix
 
-            %h3 Statistics
+            %h4 Statistics
             %dl
               %dt Total Violations
               %dd= Violation.count
