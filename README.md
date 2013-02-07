@@ -17,15 +17,13 @@ These features are listed in no particular order:
 - Google and Facebook login support
 - User donor badge
 - AJAX-Driven / instant picture upload support
-- Better multiple pictures support
 - Cropping, rotating photos
-- Multiple cities, international support
+- International support
 - Easier mobile / smartphone support
 - Developer API
 - User profiles
 - User profiles privacy settings
 - Awards / Leaderboards
-- Better Google Maps mapping of data
 - Violators Groups *(eg Canada Post)*
 - Listing of Violators, worst offenders, etc.
 - Better Statistics
