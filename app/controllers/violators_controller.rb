@@ -2,8 +2,7 @@ class ViolatorsController < ApplicationController
   load_and_authorize_resource
 
   def autocomplete
-    @violators = Violator.order(:license).where("license like ?", "%#{params[:term]}%")
-    render json: { :options => @violators.map(&:license) }.to_json
+    @violators = Violator.order(:license).where("license like ?", "%#{params[:query]}%")
   end
 
   # GET /violators
@@ -21,11 +20,6 @@ class ViolatorsController < ApplicationController
   # GET /violators/1.json
   def show
     @violator = Violator.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @violator }
-    end
   end
 
   # GET /violators/new

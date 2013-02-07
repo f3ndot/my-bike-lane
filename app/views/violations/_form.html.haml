@@ -40,6 +40,15 @@
     %p.lead Violator Information
     = f.input :license_plate, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off", placeholder: "BHAM 244"}
 
+    .control-group.organization{style: "display:none"}
+      %label.text.control-label Organization
+      .controls
+        %p.name
+    .control-group.organization-offences{style: "display:none"}
+      %label.text.control-label Total Offences
+      .controls
+        %p.total
+
   = f.error :base
 
   .form-actions
