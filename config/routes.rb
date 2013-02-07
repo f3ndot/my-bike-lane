@@ -25,6 +25,7 @@ MyBikeLane::Application.routes.draw do
       get 'ham'
     end
     collection do
+      get 'heatmap'
       get 'flagged'
       get 'spammed'
     end
