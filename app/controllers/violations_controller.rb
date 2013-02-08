@@ -160,6 +160,11 @@ class ViolationsController < ApplicationController
   # POST /violations.json
   def create
     @violation = Violation.new(params[:violation])
+
+    # dirty hack to get the new or existing violator and save it with the provided attributes
+    @violation.license_plate = params[:violation][:violator_attributes][:license]
+    @violation.violator.update_attributes params[:violation][:violator_attributes]
+
     @violation.user = current_user unless current_user.nil?
 
     @violation.user_ip = request.remote_ip

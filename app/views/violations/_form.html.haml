@@ -38,16 +38,17 @@
       .controls
         = link_to_add_association 'Add another picture', f, :photos, :class => 'btn btn-primary'
     %p.lead Violator Information
-    = f.input :license_plate, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off", placeholder: "BHAM 244"}
-
-    .control-group.organization{style: "display:none"}
-      %label.text.control-label Organization
-      .controls
-        %p.name
-    .control-group.organization-offences{style: "display:none"}
-      %label.text.control-label Total Offences
-      .controls
-        %p.total
+    = f.simple_fields_for :violator do |v|
+      = v.input :license, :as => :string, :label => "Offender's License Plate", :input_html => {autocomplete: "off", placeholder: "BHAM 244"}
+      .control-group.organization{style: "display:none"}
+        %label.text.control-label Organization
+        .controls
+          %p.name
+      .control-group.organization-offences{style: "display:none"}
+        %label.text.control-label Total Offences
+        .controls
+          %p.total
+      = v.association :organization
 
   = f.error :base
 

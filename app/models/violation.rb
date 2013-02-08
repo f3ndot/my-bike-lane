@@ -35,6 +35,6 @@ class Violation < ActiveRecord::Base
   end
 
   def license_plate=(number)
-    self.violator = Violator.find_or_create_by_license(number) if number.present?
+    self.violator = Violator.find_or_initialize_by_license(number) if number.present?
   end
 end

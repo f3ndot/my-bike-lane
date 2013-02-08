@@ -1,5 +1,5 @@
 class Violator < ActiveRecord::Base
-  attr_accessible :license, :description, :organization_id
+  attr_accessible :license, :description, :organization, :organization_id
 
   extend FriendlyId
   friendly_id :license, :use => [:slugged, :history]
