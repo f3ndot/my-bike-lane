@@ -1,5 +1,14 @@
 / = link_to t('.new', :default => t("helpers.links.new")), new_violation_path, :class => 'btn btn-primary'
 
+.row
+  .offset1.span11
+    %ul.nav.nav-tabs
+      - if params[:type] == 'new' or params[:type].nil?
+        %li.active= link_to "Most Recent", root_url
+      - else
+        %li= link_to "Most Recent", root_url
+      %li{class: active_class(:type, 'top')}= link_to "Worst Offenders", sorted_violations_url('top')
+
 .violations
   - @violations.each do |violation|
     .row.violation-row

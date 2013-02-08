@@ -22,4 +22,8 @@ module ApplicationHelper
     end
   end
 
+  def active_class(key, val)
+    params[key.to_sym] == val ? 'active' : ''
+  end
+
 end

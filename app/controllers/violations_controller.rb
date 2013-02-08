@@ -36,7 +36,12 @@ class ViolationsController < ApplicationController
   # GET /violations
   # GET /violations.json
   def index
-    @violations = Violation.without_spammed.order("created_at DESC").page(params[:page])
+    case params[:type]
+    when "top"
+      @violations = Violation.without_spammed.plusminus_tally.page(params[:page])
+    else
+      @violations = Violation.without_spammed.order("created_at DESC").page(params[:page])
+    end
 
     respond_to do |format|
       format.html # index.html.erb

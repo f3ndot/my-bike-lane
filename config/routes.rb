@@ -17,6 +17,8 @@ MyBikeLane::Application.routes.draw do
   devise_for :users, :path_prefix => 'my', controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   resources :users, :only => [:index, :show]
 
+
+  match 'sort/:type', to: 'violations#index', as: 'sorted_violations'
   resources :violations do
     member do
       get 'up_vote'
@@ -33,6 +35,7 @@ MyBikeLane::Application.routes.draw do
       get 'spammed'
     end
   end
+
 
   resources :announcements
   match 'announcements/:id/hide', to: 'announcements#hide', as: 'hide_announcement'
