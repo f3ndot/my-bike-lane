@@ -3,6 +3,26 @@ jQuery ->
 
   default_latlng = new google.maps.LatLng 43.66365, -79.377594
 
+  if document.getElementById("organization_map") != null
+    organization_map = new google.maps.Map document.getElementById("organization_map"),
+      center: default_latlng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: false
+
+    violatorBounds = new google.maps.LatLngBounds()
+    markers = {}
+    for obj in $('#organization_data').data('json').organization.violations
+      vLatLng = new google.maps.LatLng obj.violation.latitude, obj.violation.longitude
+      markers[obj.violation.id] = new google.maps.Marker
+        map: organization_map,
+        position: vLatLng
+      violatorBounds.extend vLatLng
+
+    organization_map.setCenter violatorBounds.getCenter()
+    organization_map.fitBounds violatorBounds
+
+
   if document.getElementById("violator_map") != null
     violator_map = new google.maps.Map document.getElementById("violator_map"),
       center: default_latlng,

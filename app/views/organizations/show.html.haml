@@ -24,39 +24,22 @@
 
   .row
     .span12
-      #violator_data{data: {json: render(template: "violators/show.json.rabl")}}
-      #violator_map.mapfix
+      #organization_data{data: {json: render(template: "organizations/show.json.rabl")}}
+      #organization_map.mapfix
 
   .row
     .span6
       %dl.dl-horizontal
-        %dt License Plate
-        %dd= @organization.license
-        %dt Offender Organization
-        %dd
-          - if @organization.organization.present?
-            = link_to @organization.organization.name, @organization.organization
-          - else
-            %em.muted No Organization
+        %dt Organization Name
+        %dd= @organization.name
+        %dt Total Known Violators
+        %dd= @organization.violators.count
     .span6
       %dl.dl-horizontal
-        %dt First Reported By
-        - @first_violation = @organization.violations.order('created_at').first
-        - if @first_violation.user.present?
-          %dd
-            = link_to image_tag(avatar_url(@first_violation.user, 20), {class: "avatar-url"}), user_path(@first_violation.user)
-            = link_to @first_violation.user.display_name, user_path(@first_violation.user)
-        - else
-          %dd
-            %em.muted Anonymous
-
-        %dt Total Offences
+        %dt Total Known Offences
         %dd= @organization.violations.count
-        - if @organization.organization.present?
-          %dd.muted
-            = @organization.organization.violations.count
-            in organization
-
+        %dt Type
+        %dd.muted TODO
   .row
     .span12
       .bubble
@@ -73,6 +56,7 @@
             %th Points
             %th Title
             %th Address
+            %th Offender
             %th When
         %tbody
           - @organization.violations.plusminus_tally.each do |violation|
@@ -80,6 +64,7 @@
               %td= violation.plusminus
               %td= link_to violation.title, violation
               %td= violation.full_address
+              %td= link_to violation.violator.license, violation.violator
               %td
                 %a{:href => "#", :rel => "tooltip", :title => "#{l(violation.created_at)}"}
                   = time_ago_in_words violation.created_at
