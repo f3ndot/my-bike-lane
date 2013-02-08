@@ -24,8 +24,6 @@ These features are listed in no particular order:
 - User profiles
 - User profiles privacy settings
 - Awards / Leaderboards
-- Violators Groups *(eg Canada Post)*
-- Listing of Violators, worst offenders, etc.
 - Better Statistics
 - Better UI design
 - Logo
