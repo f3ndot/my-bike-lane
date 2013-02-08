@@ -92,7 +92,7 @@ class ViolationsController < ApplicationController
   def edit
     @violation = Violation.find(params[:id])
     @violation.photos.build if @violation.photos.count == 0
-    @violation.build_violator if @violation.nil?
+    @violation.build_violator if @violation.violator.nil?
   end
 
   def flag
@@ -162,8 +162,10 @@ class ViolationsController < ApplicationController
     @violation = Violation.new(params[:violation])
 
     # dirty hack to get the new or existing violator and save it with the provided attributes
-    @violation.license_plate = params[:violation][:violator_attributes][:license]
-    @violation.violator.update_attributes params[:violation][:violator_attributes]
+    if params[:violation][:violator_attributes][:license].present?
+      @violation.license_plate = params[:violation][:violator_attributes][:license]
+      @violation.violator.update_attributes params[:violation][:violator_attributes]
+    end
 
     @violation.user = current_user unless current_user.nil?
 
@@ -194,6 +196,16 @@ class ViolationsController < ApplicationController
   # PUT /violations/1.json
   def update
     @violation = Violation.find(params[:id])
+
+    # dirty hack to get the new or existing violator and save it with the provided attributes
+    if params[:violation][:violator_attributes][:license].present?
+      @violation.license_plate = params[:violation][:violator_attributes][:license]
+      @violation.violator.update_attributes params[:violation][:violator_attributes]
+    end
+
+    @violation.user_ip = request.remote_ip
+    @violation.user_agent = request.env['HTTP_USER_AGENT']
+    @violation.referrer = request.referrer
 
     respond_to do |format|
       if @violation.update_attributes(params[:violation])
