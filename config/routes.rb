@@ -9,7 +9,11 @@ MyBikeLane::Application.routes.draw do
 
   match '/robots.txt' => 'pages#robots'
   resources :pages
-  match 'page/:id', to: 'pages#public_show', as: 'public_page'
+  match '/page/:id', to: 'pages#public_show', as: 'public_page'
+
+  resources :blog_posts
+  match '/blog', to: 'blog_posts#public_index', as: 'public_blog_posts'
+  match '/blog/:id', to: 'blog_posts#show', as: 'public_blog_post'
 
 
   resources :photos

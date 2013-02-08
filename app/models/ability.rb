@@ -18,6 +18,7 @@ class Ability
       can :hide, Announcement
       can [:show, :robots, :public_show], Page
       cannot :index, Page
+      cannot :index, BlogPost
     end
 
     # Don't let a guest user behave like a regular user
@@ -26,7 +27,7 @@ class Ability
       can [:update, :destroy], Violation, :user_id => user.id
       can [:update, :destroy], Photo, :user_id => user.id
 
-      # You can only flag if you're a user
+    # You can only flag if you're a user
       can [:flag, :up_vote, :down_vote], Violation
     end
 

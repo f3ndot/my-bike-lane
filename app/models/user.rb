@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   validates_length_of :bio, :maximum => 500, :allow_nil => true
   validates_inclusion_of :gender, :in => %w(Male Female Other), :allow_nil => true
 
+  scope :only_admins, lambda { where(:admin => true) }
+
   # Virtual attribute for allowing email or username for logging in
   attr_accessor :login
 

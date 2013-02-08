@@ -1,0 +1,36 @@
+- if @blog_posts.count == 0
+  .row
+    .span12
+      .alert.alert-info{style: 'text-align:center'}
+        %i.icon-info-sign
+        No blog posts!
+- @blog_posts.each do |blog_post|
+  .page{style: 'margin-bottom:40px'}
+    .row
+      .span12
+        .page-title.clearfix
+          %p.lead.pull-left
+            = blog_post.title
+            %a{href: public_blog_post_path(blog_post), style: 'font-size:13px;color:#999'}
+              %i.icon-link
+          - if blog_post.updated_at == blog_post.created_at
+            .muted.datestamp.pull-right
+              posted by
+              = link_to image_tag(avatar_url(blog_post.user, 20), {class: "avatar-url"}), user_path(blog_post.user)
+              = link_to blog_post.user.display_name(false), user_path(blog_post.user)
+              on
+              = l(blog_post.updated_at)
+          - else
+            .muted.datestamp.pull-right
+              updated by
+              = link_to image_tag(avatar_url(blog_post.user, 20), {class: "avatar-url"}), user_path(blog_post.user)
+              = link_to blog_post.user.display_name(false), user_path(blog_post.user)
+              on
+              = l(blog_post.updated_at)
+
+        %hr.body-divider
+
+    .row
+      .span12
+        .bubble
+          .page-body= blog_post.text.html_safe

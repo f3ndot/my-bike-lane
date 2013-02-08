@@ -1,0 +1,44 @@
+.page
+  .row
+    .span12
+      .page-title.clearfix
+        %p.lead.pull-left= @blog_post.title
+        - if @blog_post.updated_at == @blog_post.created_at
+          .muted.datestamp.pull-right
+            posted by
+            = link_to image_tag(avatar_url(@blog_post.user, 20), {class: "avatar-url"}), user_path(@blog_post.user)
+            = link_to @blog_post.user.display_name(false), user_path(@blog_post.user)
+            on
+            = l(@blog_post.updated_at)
+        - else
+          .muted.datestamp.pull-right
+            updated by
+            = link_to image_tag(avatar_url(@blog_post.user, 20), {class: "avatar-url"}), user_path(@blog_post.user)
+            = link_to blog_post.user.display_name(false), user_path(@blog_post.user)
+            on
+            = l(@blog_post.updated_at)
+      %hr.body-divider
+
+  .row
+    .span12
+      .bubble
+        .page-body= @blog_post.text.html_safe
+
+.disqus-section
+  .row
+    .span12
+
+      %hr
+
+      #disqus_thread
+        %script{type:"text/javascript"}
+          var disqus_shortname = 'mybikelanetoronto'; // required: replace example with your forum shortname
+
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        %noscript
+          Please enable JavaScript to view the
+          %a{href:"http://disqus.com/?ref_noscript"} comments powered by Disqus.

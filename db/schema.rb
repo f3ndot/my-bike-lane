@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206204715) do
+ActiveRecord::Schema.define(:version => 20130208184557) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(:version => 20130206204715) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "blog_posts", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "slug"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "blog_posts", ["slug"], :name => "index_blog_posts_on_slug", :unique => true
+  add_index "blog_posts", ["user_id"], :name => "index_blog_posts_on_user_id"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false

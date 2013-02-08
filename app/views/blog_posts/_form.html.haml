@@ -1,0 +1,7 @@
+= simple_form_for @blog_post, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :title
+  = f.input :text, :input_html => {:class => "span9"}
+  = f.association :user, :label_method => :username, :collection => User.only_admins, :selected => current_user
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), pages_path, :class => 'btn'
