@@ -20,7 +20,7 @@ jQuery ->
         if e.violator.license == item
           console.log e
 
-          if e.violator.organization.id == null
+          if e.violator.organization == null
             $('#violation_violator_attributes_organization_id').val ''
           else
             $('#violation_violator_attributes_organization_id').val e.violator.organization.id
