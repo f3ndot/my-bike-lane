@@ -16,7 +16,8 @@ jQuery ->
       vLatLng = new google.maps.LatLng obj.violation.latitude, obj.violation.longitude
       markers[obj.violation.id] = new google.maps.Marker
         map: organization_map,
-        position: vLatLng
+        position: vLatLng,
+        title: obj.violation.title
       violatorBounds.extend vLatLng
 
     organization_map.setCenter violatorBounds.getCenter()
@@ -36,7 +37,8 @@ jQuery ->
       vLatLng = new google.maps.LatLng obj.violation.latitude, obj.violation.longitude
       markers[obj.violation.id] = new google.maps.Marker
         map: violator_map,
-        position: vLatLng
+        position: vLatLng,
+        title: obj.violation.title
       violatorBounds.extend vLatLng
 
     violator_map.setCenter violatorBounds.getCenter()
