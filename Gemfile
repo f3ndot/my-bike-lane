@@ -29,7 +29,7 @@ group :assets do
   gem 'jquery-fileupload-rails'
 end
 
-gem 'rabl-rails'
+gem 'rabl'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'cocoon'

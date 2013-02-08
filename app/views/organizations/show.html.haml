@@ -1,17 +1,105 @@
-- model_class = Organization
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human
+.page
+  .row
+    .span12
+      .page-title.clearfix
+        %p.lead.pull-left
+          = @organization.name
+          - if can? :update, @organization
+            = link_to "<i class='icon-pencil'></i>".html_safe, edit_organization_path(@organization), :class => 'btn btn-mini'
+          - if can? :destroy, @organization
+            = link_to "<i class='icon-remove'></i>".html_safe, organization_path(@organization), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%p
-  %strong= model_class.human_attribute_name(:name) + ':'
-  %br
-  = @organization.name
-%p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = @organization.description
+        .pull-right.datestamp
+          %span.muted= "first seen #{l(@organization.updated_at)}"
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), organizations_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_organization_path(@organization), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), organization_path(@organization), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+          / - if @organization.flagged == true
+          /   .btn.btn-mini.disabled{:title => 'Flagged for review'}
+          /     %i.icon-flag
+          /     Flagged
+
+          / - else
+          /   - if can? :flag, @organization
+          /     = link_to "<i class='icon-flag'></i> Flag".html_safe, flag_violator_path(@organization), :title => 'Flag for review', :class => 'btn btn-mini'
+      %hr.body-divider
+
+  .row
+    .span12
+      #violator_data{data: {json: render(template: "violators/show.json.rabl")}}
+      #violator_map.mapfix
+
+  .row
+    .span6
+      %dl.dl-horizontal
+        %dt License Plate
+        %dd= @organization.license
+        %dt Offender Organization
+        %dd
+          - if @organization.organization.present?
+            = link_to @organization.organization.name, @organization.organization
+          - else
+            %em.muted No Organization
+    .span6
+      %dl.dl-horizontal
+        %dt First Reported By
+        - @first_violation = @organization.violations.order('created_at').first
+        - if @first_violation.user.present?
+          %dd
+            = link_to image_tag(avatar_url(@first_violation.user, 20), {class: "avatar-url"}), user_path(@first_violation.user)
+            = link_to @first_violation.user.display_name, user_path(@first_violation.user)
+        - else
+          %dd
+            %em.muted Anonymous
+
+        %dt Total Offences
+        %dd= @organization.violations.count
+        - if @organization.organization.present?
+          %dd.muted
+            = @organization.organization.violations.count
+            in organization
+
+  .row
+    .span12
+      .bubble
+        .page-body= @organization.description.present? ? @organization.description : "<em class='muted'>No description provided</em>".html_safe
+
+  %hr
+
+  .row
+    .span12
+      %h4 Recorded Violations
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Points
+            %th Title
+            %th Address
+            %th When
+        %tbody
+          - @organization.violations.plusminus_tally.each do |violation|
+            %tr
+              %td= violation.plusminus
+              %td= link_to violation.title, violation
+              %td= violation.full_address
+              %td
+                %a{:href => "#", :rel => "tooltip", :title => "#{l(violation.created_at)}"}
+                  = time_ago_in_words violation.created_at
+                  ago
+
+  .disqus-section
+    .row
+      .span12
+
+        %hr
+
+        #disqus_thread
+          %script{type:"text/javascript"}
+            var disqus_shortname = 'mybikelanetoronto'; // required: replace example with your forum shortname
+
+            (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          %noscript
+            Please enable JavaScript to view the
+            %a{href:"http://disqus.com/?ref_noscript"} comments powered by Disqus.

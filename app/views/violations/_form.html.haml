@@ -48,10 +48,27 @@
         %label.text.control-label Total Offences
         .controls
           %p.total
-      = v.association :organization
+      = v.association :organization, :hint => link_to("Create a new Organization", '#newOrg', :role => "button", :class => 'create-new-org-hint', :data => {:toggle => "modal"})
+
 
   = f.error :base
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), violations_path, :class => 'btn'
+
+#newOrg.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "newOrgLabel", :role => "dialog", :tabindex => "-1"}
+  = simple_form_for Organization.new, :html => { :style => 'margin-bottom: 0px' } do |f|
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#newOrgLabel Create New Organization
+    .modal-body
+
+      = f.input :name
+      = f.input :description, :input_html => {:class => "span7", :rows => 5}
+
+      = f.error :base
+
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Nevermind
+      = f.submit nil, :class => 'btn btn-primary'

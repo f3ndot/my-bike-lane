@@ -3,6 +3,26 @@ jQuery ->
 
   default_latlng = new google.maps.LatLng 43.66365, -79.377594
 
+  if document.getElementById("violator_map") != null
+    violator_map = new google.maps.Map document.getElementById("violator_map"),
+      center: default_latlng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: false
+
+    violatorBounds = new google.maps.LatLngBounds()
+    markers = {}
+    for obj in $('#violator_data').data('json').violator.violations
+      vLatLng = new google.maps.LatLng obj.violation.latitude, obj.violation.longitude
+      markers[obj.violation.id] = new google.maps.Marker
+        map: violator_map,
+        position: vLatLng
+      violatorBounds.extend vLatLng
+
+    violator_map.setCenter violatorBounds.getCenter()
+    violator_map.fitBounds violatorBounds
+
+
   if document.getElementById("violation_map") != null
     map = new google.maps.Map document.getElementById("violation_map"),
       center: default_latlng,
@@ -86,7 +106,8 @@ jQuery ->
       mapTypeControl: false
 
     $.getJSON '/violations/heatmap.json', (data, textStatus, jqXHR) ->
-      for v in data.violations
+      for obj in data
+        v = obj.violation
         vLatLng = new google.maps.LatLng v.latitude, v.longitude
         heatmapData.push vLatLng
         heatmapBounds.extend vLatLng

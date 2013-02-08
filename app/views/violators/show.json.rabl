@@ -1,6 +1,5 @@
-object :@violator
-attributes :id, :license, :description
+object @violator
+attributes :id, :license, :description, :violations, :organization
 
-child :organization do |org|
-  #attributes :id, :name, :description unless org.blank?
-end
+child(:violations) { attributes :id, :title, :created_at, :latitude, :longitude }
+child(:organization => :organization) { attributes :id, :name, :description }

@@ -12,23 +12,20 @@ jQuery ->
       $.get '/violators/autocomplete.json', {query: query}, (data) ->
         lastQueryData = data
         plates = []
-        $.map lastQueryData.violators, (e, i) ->
-          plates.push e.license
+        $.map lastQueryData, (e, i) ->
+          plates.push e.violator.license
         process plates
     updater: (item) ->
-      $.map lastQueryData.violators, (e, i) ->
-        if e.license == item
+      $.map lastQueryData, (e, i) ->
+        if e.violator.license == item
           console.log e
 
-          if e.organization_id == null
-            # $('.organization .name').text e.license+" doesn't belong to an organization"
-            # $('.organization label.control-label').hide()
-            # $('.organization').fadeIn()
+          if e.violator.organization.id == null
             $('#violation_violator_attributes_organization_id').val ''
           else
-            # $('.organization .name').text e.organization_name
-            # $('.organization').fadeIn()
-            # $('.organization-offences .total').text e.organization_offences
-            # $('.organization-offences').fadeIn()
-            $('#violation_violator_attributes_organization_id').val e.organization_id
+            $('#violation_violator_attributes_organization_id').val e.violator.organization.id
       item
+
+  # $('#violation_violator_attributes_organization_id').change ->
+  #   console.log $(this).val()
+  #   if $(this).val().length > 0 then $('.create-new-org-hint').hide() else $('.create-new-org-hint').show()

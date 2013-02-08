@@ -13,6 +13,7 @@ class Ability
       can :read, :all
       can [:create, :heatmap], Violation
       can [:create, :update, :autocomplete], Violator
+      can [:create, :update], Organization
       cannot :manage, Announcement
       can :hide, Announcement
       can [:show, :robots, :public_show], Page

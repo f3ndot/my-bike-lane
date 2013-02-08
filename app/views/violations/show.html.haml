@@ -57,18 +57,24 @@
         %dt License Plate
         %dd
           - if @violation.violator.present?
-            = @violation.violator.license
+            = link_to @violation.violator.license, @violation.violator
           - else
             %em.muted Unknown
         - if @violation.violator.present?
           %dt Offender Organization
           %dd
             - if @violation.violator.organization.present?
-              = @violation.violator.organization.name
+              = link_to @violation.violator.organization.name, @violation.violator.organization
             - else
               %em.muted No Organization
           %dt Total Offences
           %dd= @violation.violator.violations.count
+          - if @violation.violator.organization.present?
+            %dd.muted
+              = @violation.violator.organization.violations.count
+              in organization
+
+
         %dt Submitted By
         - if @violation.user.present?
           %dd
