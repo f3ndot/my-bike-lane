@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   :violations, :uid, :provider
 
   has_many :violations
+  has_many :blog_posts
   has_many :photos
 
   acts_as_voter

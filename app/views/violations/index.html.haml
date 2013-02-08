@@ -9,6 +9,12 @@
         %li= link_to "Most Recent", root_url
       %li{class: active_class(:type, 'top')}= link_to "Worst Offenders", sorted_violations_url('top')
 
+    - if params[:type] == 'top'
+      .alert
+        %i.icon-warning-sign
+        %strong There be bugs here!
+        Unfortunately the paging system is broken on this page.
+
 .violations
   - @violations.each do |violation|
     .row.violation-row
@@ -59,6 +65,7 @@
                 - if index > 0
                   = link_to image_tag(photo.image, :width => 161), violation_path(violation)
 
-.violation-pagination
-  %p.muted= page_entries_info @violations
-  = will_paginate @violations, :renderer => BootstrapPagination::Rails
+- if params[:type] != 'top'
+  .violation-pagination
+    %p.muted= page_entries_info @violations
+    = will_paginate @violations, :renderer => BootstrapPagination::Rails
