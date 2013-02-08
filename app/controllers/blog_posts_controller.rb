@@ -11,6 +11,7 @@ class BlogPostsController < ApplicationController
 
   def show
     @blog_post = BlogPost.find(params[:id])
+    @title = @blog_post.title
   end
 
   def new

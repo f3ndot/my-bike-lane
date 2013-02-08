@@ -34,3 +34,7 @@
       .span12
         .bubble
           .page-body= blog_post.text.html_safe
+
+    .row
+      .span12
+        = link_to "See Comments", public_blog_post_path(blog_post)<<'#disqus_thread'

@@ -33,6 +33,10 @@
       #disqus_thread
         %script{type:"text/javascript"}
           var disqus_shortname = 'mybikelanetoronto'; // required: replace example with your forum shortname
+          = "var disqus_identifier = 'blog_#{@blog_post.id}';"
+          = "var disqus_title = '#{@title}';"
+          = "var disqus_url = '#{public_blog_post_url(@blog_post)}';"
+
 
           (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

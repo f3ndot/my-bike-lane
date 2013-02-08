@@ -31,6 +31,7 @@ class PagesController < ApplicationController
 
   def public_show
     @page = Page.published.find(params[:id])
+    @title = @page.title
 
     respond_to do |format|
       format.html # show.html.erb
