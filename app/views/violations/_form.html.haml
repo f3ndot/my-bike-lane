@@ -29,7 +29,9 @@
       .span6
         %p
           %strong Address Preview
-          %span#preview_map_updating.label.label-info{style: 'display:none;'} Updating...
+          %span#preview_map_updating.label.label-info{style: 'display:none'}
+            %i.icon-refresh.icon-spin
+            Updating...
         #preview_map.mapfix{style: 'height:250px;'}
     %p.lead Photographic Evidence
     = f.simple_fields_for :photos do |p|

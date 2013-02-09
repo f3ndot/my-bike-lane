@@ -14,7 +14,7 @@
           .muted.datestamp.pull-right
             updated by
             = link_to image_tag(avatar_url(@blog_post.user, 20), {class: "avatar-url"}), user_path(@blog_post.user)
-            = link_to blog_post.user.display_name(false), user_path(@blog_post.user)
+            = link_to @blog_post.user.display_name(false), user_path(@blog_post.user)
             on
             = l(@blog_post.updated_at)
       %hr.body-divider
