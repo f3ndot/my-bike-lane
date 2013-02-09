@@ -18,6 +18,7 @@ class Ability
       can :hide, Announcement
       can [:show, :robots, :public_show], Page
       cannot :index, Page
+      can :public_index, BlogPost
       cannot :index, BlogPost
     end
 
