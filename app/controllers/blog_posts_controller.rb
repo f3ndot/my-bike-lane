@@ -6,7 +6,7 @@ class BlogPostsController < ApplicationController
   end
 
   def public_index
-    @blog_posts = BlogPost.all
+    @blog_posts = BlogPost.order('created_at DESC')
   end
 
   def show
