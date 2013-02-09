@@ -20,6 +20,7 @@ class ViolatorsController < ApplicationController
   # GET /violators/1.json
   def show
     @violator = Violator.find(params[:id])
+    @title = @violator.license
   end
 
   # GET /violators/new

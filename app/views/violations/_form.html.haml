@@ -17,6 +17,13 @@
 
   = f.error_notification
 
+  .alert
+    %i.icon-info-sign
+    %strong Remember!
+    Only submit new violations if they're
+    = link_to "illegally", "http://www.toronto.ca/cycling/pdf/bike_lane_bylaw_handbill.pdf"
+    parked or stopped in the bike lane.
+
   .form-inputs
     = f.input :title
     = f.input :description, :input_html => {:class => "span9", :rows => 5}
