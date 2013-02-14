@@ -18,7 +18,7 @@
 .violations
   - @violations.each do |violation|
     .row.violation-row
-      .span1
+      .span1.hidden-phone
         .author
           - if violation.user.nil?
             %a{:href => "#", :rel => "bottom-tooltip", :title => "Anonymous"}= image_tag(avatar_url(violation.user, 63), :class => "anonymous-avatar", :alt => "", :title => "")
@@ -36,6 +36,9 @@
             %a.arrow-s{href: down_vote_violation_path(violation), title: "This post is of bad quality or the vehicle was in the right", rel: 'right-tooltip'}
       .span11
         .violation-item.clearfix
+          %span.visible-inline-phone
+            %a.btn.btn-mini.btn-primary.mobile-violation-vote{:title => 'Vote on Violation', :href => '#voteViolation', :role => 'button', :data => {:toggle => 'modal'}}
+              Vote
           %strong.title= link_to violation.title, violation_path(violation)
           - if violation.violator.present?
             %span.muted= violation.violator.license
@@ -54,8 +57,18 @@
                 - if can? :flag, violation
                   = link_to "<i class='icon-flag'></i>".html_safe, flag_violation_path(violation), :title => 'Flag for review', :class => 'btn btn-mini'
           .pull-right.muted.date
+            %span.visible-inline-phone.mobile-points= "with #{violation.plusminus} points"
             posted
-            %a{:href => "#", :rel => "tooltip", :title => "#{l(violation.created_at)}"}= time_ago_in_words violation.created_at
+            %span.visible-inline-phone
+              by
+              - if violation.user.nil?
+                = image_tag avatar_url(violation.user, 20), {class: "avatar-url"}
+                Anonymous
+              - else
+                = link_to image_tag(avatar_url(violation.user, 20), {class: "avatar-url"}), user_path(violation.user)
+                = link_to violation.user.display_name(false), user_path(violation.user)
+              about
+            %a.datetime{:href => "#", :rel => "tooltip", :title => "#{l(violation.created_at)}"}= time_ago_in_words violation.created_at
             ago
         .violation-pictures
           - if violation.photos.count > 0
@@ -69,3 +82,15 @@
   .violation-pagination
     %p.muted= page_entries_info @violations
     = will_paginate @violations, :renderer => BootstrapPagination::Rails
+
+#voteViolation.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "voteViolationLabel", :role => "dialog", :tabindex => "-1"}
+  = simple_form_for Organization.new, :html => { :style => 'margin-bottom: 0px' } do |f|
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#voteViolationLabel
+        Sorry
+    .modal-body
+      %p Voting in mobile mode is currently not supported. Sorry about that.
+
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Crap, OK

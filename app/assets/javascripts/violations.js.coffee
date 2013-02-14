@@ -4,6 +4,10 @@
 
 jQuery ->
 
+  # $('#voteViolation').on 'show', ->
+  #   $thisModal = $(this)
+  #   $thisModal.find('.violation-name').text 
+
   lastQueryData = {}
   $('#violation_violator_attributes_license').keyup ->
     $('.organization, .organization-offences').fadeOut() if $(this).val().length == 0

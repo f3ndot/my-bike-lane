@@ -41,3 +41,22 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+@media (max-width: 767px) {
+
+  // weird fix for bootstrap responsive utility class
+  .visible-inline-phone {
+    display: inline !important;
+  }
+
+  #sendFeedback {
+    display: none;
+    float: right;
+    margin-bottom: 20px;
+  }
+
+  // bullshit tag to help Javascript decide if a device is mobile
+  #mobileTag {
+    display: block;
+  }
+}
