@@ -5,7 +5,7 @@ class Violator < ActiveRecord::Base
   friendly_id :license, :use => [:slugged, :history]
 
   has_many :violations
-  belongs_to :organization
+  belongs_to :organization, :counter_cache => true
 
   validates_presence_of :license
   validates_uniqueness_of :license
