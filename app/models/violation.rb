@@ -27,24 +27,24 @@ class Violation < ActiveRecord::Base
   validates_presence_of :title, :address, :city
 
   def date_of_incident
-    return if datetime_of_incident.blank?
+    return '' if datetime_of_incident.blank?
     # default is "yyyy-mm-ddd"
     datetime_of_incident.to_date.strftime
   end
 
   def time_of_incident
-    return if datetime_of_incident.blank?
+    return '' if datetime_of_incident.blank?
     datetime_of_incident.to_time.strftime "%I:%M %p"
   end
 
   def date_of_incident=(date_str)
-    return if date_str.blank?
+    return '' if date_str.blank?
     @date = Date.parse date_str
     merge_date_and_time
   end
 
   def time_of_incident=(time_str)
-    return if time_str.blank?
+    return '' if time_str.blank?
     @time = Time.parse time_str
     merge_date_and_time
   end
