@@ -63,6 +63,22 @@
     .violation-pictures
       text-align: center
       .display
+        position: relative
+        .photo-comment
+          color: #fff
+          font-size: 16px
+          font-weight: 200
+          padding: 10px
+          position: absolute
+          bottom: 5px
+          left: 10px
+          width: 775px
+          background-color: rgba(0, 0, 0, 0.75)
+          @media (max-width: 1199px)
+            width: 610px
+          @media (min-width: 1200px)
+            width: 775px
+
         a
           display: inline-block
           img
