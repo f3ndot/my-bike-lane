@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418160030) do
+ActiveRecord::Schema.define(:version => 20130421214741) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -114,18 +114,19 @@ ActiveRecord::Schema.define(:version => 20130418160030) do
     t.text     "description"
     t.string   "address"
     t.integer  "violator_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "user_id"
     t.string   "slug"
-    t.boolean  "flagged",     :default => false
+    t.boolean  "flagged",              :default => false
     t.string   "user_ip"
     t.string   "user_agent"
     t.string   "referrer"
-    t.boolean  "spammed",     :default => false
+    t.boolean  "spammed",              :default => false
     t.string   "city"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "datetime_of_incident"
   end
 
   add_index "violations", ["slug"], :name => "index_violations_on_slug", :unique => true

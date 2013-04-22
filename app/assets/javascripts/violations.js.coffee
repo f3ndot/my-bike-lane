@@ -4,9 +4,14 @@
 
 jQuery ->
 
+  $('#violation_date_of_incident').datepicker
+    format: 'yyyy-mm-dd'
+  $('#violation_time_of_incident').timepicker
+    defaultTime: false
+
   # $('#voteViolation').on 'show', ->
   #   $thisModal = $(this)
-  #   $thisModal.find('.violation-name').text 
+  #   $thisModal.find('.violation-name').text
 
   lastQueryData = {}
   $('#violation_violator_attributes_license').keyup ->

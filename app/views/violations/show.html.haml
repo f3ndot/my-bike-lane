@@ -54,6 +54,12 @@
       %dl.dl-horizontal
         %dt Address or Location
         %dd#violationAddress{data: {latitude: @violation.latitude, longitude: @violation.longitude}}= @violation.full_address
+        %dt Time of Incident
+        %dd
+          - if @violation.time_of_incident.present?
+            = @violation.time_of_incident
+          - else
+            %em.muted Unknown
         %dt License Plate
         %dd
           - if @violation.violator.present?
