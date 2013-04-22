@@ -56,8 +56,11 @@
         %dd#violationAddress{data: {latitude: @violation.latitude, longitude: @violation.longitude}}= @violation.full_address
         %dt Time of Incident
         %dd
-          - if @violation.time_of_incident.present?
-            = @violation.time_of_incident
+          - if @violation.datetime_of_incident.present?
+            - if @violation.datetime_of_incident.today?
+              = @violation.datetime_of_incident.strftime "Today at %l:%M %p"
+            - else
+              = @violation.datetime_of_incident.strftime "%l:%M %p on %B %e, %Y"
           - else
             %em.muted Unknown
         %dt License Plate

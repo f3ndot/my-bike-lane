@@ -1,5 +1,5 @@
 class Violation < ActiveRecord::Base
-  attr_accessible :address, :city, :latitude, :longitude, :description, :title, :datetime_of_incident, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed, :violator_attributes
+  attr_accessible :address, :city, :latitude, :longitude, :description, :title, :datetime_of_incident, :violator_id, :user_id, :photos_attributes, :slug, :license_plate, :flagged, :user_ip, :user_agent, :referrer, :spammed, :violator_attributes, :date_of_incident, :time_of_incident
 
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]
@@ -27,22 +27,24 @@ class Violation < ActiveRecord::Base
   validates_presence_of :title, :address, :city
 
   def date_of_incident
-    return nil if datetime_of_incident.nil?
+    return if datetime_of_incident.blank?
     # default is "yyyy-mm-ddd"
     datetime_of_incident.to_date.strftime
   end
 
   def time_of_incident
-    return nil if datetime_of_incident.nil?
+    return if datetime_of_incident.blank?
     datetime_of_incident.to_time.strftime "%I:%M %p"
   end
 
   def date_of_incident=(date_str)
+    return if date_str.blank?
     @date = Date.parse date_str
     merge_date_and_time
   end
 
   def time_of_incident=(time_str)
+    return if time_str.blank?
     @time = Time.parse time_str
     merge_date_and_time
   end
@@ -62,9 +64,12 @@ class Violation < ActiveRecord::Base
   private
 
   def merge_date_and_time
-    if @date.present? and @time.present?
-      datetime_of_incident = DateTime.parse "#{@date.to_s}, #{@time.strftime "%I:%M %p"}"
-      raise datetime_of_incident.inspect
+    if @date.present?
+      if @time.present?
+        self.datetime_of_incident = DateTime.parse "#{@date.to_s}, #{@time.strftime "%I:%M %p"}"
+      else
+        self.datetime_of_incident = DateTime.parse "#{@date.to_s}"
+      end
     end
   end
 end
