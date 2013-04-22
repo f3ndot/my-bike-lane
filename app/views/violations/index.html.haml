@@ -73,9 +73,11 @@
         .violation-pictures
           - if violation.photos.count > 0
             .display
-              = link_to image_tag(violation.photos.first.image, :class => "img-polaroid"), violation_path(violation)
-              - if violation.description.present?
-                .photo-comment= violation.description
+              %a{:href => violation_path(violation), :class => "img-polaroid"}
+                .img-desc-container
+                  = image_tag violation.photos.first.image
+                  - if violation.description.present?
+                    .photo-comment= violation.description
             .pictures
               - violation.photos.each_with_index do |photo,index|
                 - if index > 0

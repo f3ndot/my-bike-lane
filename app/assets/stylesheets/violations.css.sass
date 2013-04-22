@@ -63,32 +63,32 @@
     .violation-pictures
       text-align: center
       .display
-        position: relative
-        .photo-comment
-          color: #fff
-          font-size: 16px
-          font-weight: 200
-          padding: 10px
-          position: absolute
-          bottom: 5px
-          left: 10px
-          width: 775px
-          background-color: rgba(0, 0, 0, 0.75)
-          @media (max-width: 1199px)
-            width: 610px
-          @media (min-width: 1200px)
-            width: 775px
-
         a
           display: inline-block
+          max-width: 100%
+          .img-desc-container
+            max-width: 100%
+            position: relative
+            overflow: hidden
+            .photo-comment
+              color: #fff
+              font-size: 16px
+              font-weight: 200
+              padding: 10px 20px 10px 10px
+              position: absolute
+              bottom: 0
+              left: 0
+              background-color: rgba(0, 0, 0, 0.75)
+              width: 99%
           img
-            width: 795px
+            width: 100%
+            max-width: 795px
           @media (max-width: 1199px)
             img
-              width: 630px
+              max-width: 630px
           @media (min-width: 1200px)
             img
-              width: 795px
+              max-width: 795px
 
         .img-polaroid
           border-top: 0
