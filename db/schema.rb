@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421214741) do
+ActiveRecord::Schema.define(:version => 20130501170030) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130421214741) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.integer  "violations_count", :default => 0
+    t.integer  "violators_count",  :default => 0
   end
 
   create_table "pages", :force => true do |t|
@@ -137,9 +138,10 @@ ActiveRecord::Schema.define(:version => 20130421214741) do
     t.string   "license"
     t.text     "description"
     t.integer  "organization_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "slug"
+    t.integer  "violations_count", :default => 0
   end
 
   add_index "violators", ["organization_id"], :name => "index_violators_on_organization_id"
