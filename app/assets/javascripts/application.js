@@ -18,5 +18,7 @@
 //= require_tree .
 //= require jquery.autosize.js
 //= require jquery.ba-throttle-debounce.min.js
+//= require bootstrap-timepicker.min.js
+//= require bootstrap-datepicker.js
 //= require google-analytics.js
 //= require cocoon
