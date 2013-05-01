@@ -38,7 +38,16 @@
             #violation_heatmap.mapfix
 
             %h4 Worst Organizations
-            %dl
+            %dl.dl-horizontal
+              - Organization.worst(10).each do |org|
+                %dt= link_to org.name, org
+                %dd= org.violations_count
+
+            %h4 Worst Vehicles
+            %dl.dl-horizontal
+              - Violator.worst(10).each do |org|
+                %dt= link_to org.name, org
+                %dd= org.violations_count
 
             %h4 Statistics
             %dl
