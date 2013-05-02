@@ -10,6 +10,6 @@ class Violator < ActiveRecord::Base
   validates_presence_of :license
   validates_uniqueness_of :license
 
-  scope :worst, lambda {|limit| order(:violations_count).limit(limit) } 
+  scope :worst, lambda {|limit| where("violations_count > 0").order("violations_count DESC").limit(limit) } 
 
 end
