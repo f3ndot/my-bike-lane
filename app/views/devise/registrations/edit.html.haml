@@ -30,6 +30,13 @@
       - else
         .controls
           %h6 No password since you're using Facebook or Twitter for login!
+      - if resource.subscription.present? && resource.subscription.active?
+        .controls
+          %h5
+            You're currently subscribed to
+            = "#{resource.subscription.notification_type}"
+            notifications
+          = link_to "Unsubscribe from #{resource.subscription.notification_type} notification emails", subscription_path(resource.subscription), :method => "delete", :data => { :confirm => "Are you sure you want to unsubscribe?" }, :class => 'btn btn-danger btn-small' 
     %hr
     = f.input :given_name
     = f.input :family_name

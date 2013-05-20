@@ -1,0 +1,19 @@
+!!!
+%html{lang:"en"}
+  %head
+    %meta{content:"text/html; charset=UTF-8", http: {equiv: "Content-Type"}}
+  %body
+    %h1 MyBikeLane.TO Violation Notification!
+    %h2 New Violation Posted!
+
+    %p
+      %strong= "Title: #{@violation.title}"
+    %p
+      = "URL: #{violation_url(@violation)}"
+    %p
+      = "Date and Time: #{@violation.date_of_incident} at #{@violation.time_of_incident}"
+    %p
+      = "Address: #{@violation.full_address}"
+    %hr
+    %p
+      You are receiving this email because you've signed up for receiving notifications. To stop receiving notifications, email Justin at me@justinbull.ca or log into your account and unsubscibe on your Edit Profile page.

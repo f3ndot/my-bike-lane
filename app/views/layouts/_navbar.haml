@@ -37,6 +37,7 @@
                 %ul.dropdown-menu
                   %li= link_to "Edit Profile", edit_user_registration_path
                   - if current_user.admin?
+                    %li= link_to "<i class='icon-star'></i> Manage Subscribers".html_safe, subscriptions_path
                     - if flagged_violations_count > 0
                       %li
                         %a{href: flagged_violations_url}
@@ -49,7 +50,7 @@
                           %i.icon-star
                           Spammed Violations
                           %span.badge.badge-important= spammed_violations_count
-                    %li= link_to "<i class='icon-star'></i> Announcements".html_safe, announcements_path
+                    %li= link_to "<i class='icon-star'></i> Manage Announcements".html_safe, announcements_path
                     %li= link_to "<i class='icon-star'></i> Site Pages".html_safe, pages_path
                     %li= link_to "<i class='icon-star'></i> Blog Posts".html_safe, blog_posts_path
                   %li.divider

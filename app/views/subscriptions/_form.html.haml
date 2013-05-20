@@ -1,0 +1,16 @@
+= simple_form_for @subscription, :html => { :class => 'form-horizontal' } do |f|
+  = f.association :user
+  = f.input :email, :hint => 'Only fill if no user is set (manual email notification)'
+  = f.input :notification_type, :collection => Subscription::NOTIFICATION_TYPES
+  .controls
+    %dl.dl-horizontal
+      %dt violation
+      %dd Notify every violation that's submitted
+      %dt weekly
+      %dd Notify every week with a list of new violations
+      %dt monthly
+      %dd Notify every month with a list of new violations
+  = f.input :active
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), subscriptions_path, :class => 'btn'

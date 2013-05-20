@@ -1,4 +1,7 @@
 MyBikeLane::Application.routes.draw do
+  resources :subscriptions
+
+
   resources :organizations
 
   resources :violators do

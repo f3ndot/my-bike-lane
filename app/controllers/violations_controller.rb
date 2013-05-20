@@ -186,6 +186,10 @@ class ViolationsController < ApplicationController
           format.html { redirect_to '/', alert: 'Sorry but your submission was detected as spam. The admin will manually verify shortly.' }
           format.json { render json: @violation, status: :spam, location: '/' }
         else
+          subscriber = Subscription.type 'violation'
+          subscriber.each do |s|
+            SubscriptionMailer.notify(s, @violation).deliver
+          end
           format.html { redirect_to @violation, notice: 'Violation was successfully created.' }
           format.json { render json: @violation, status: :created, location: @violation }
         end

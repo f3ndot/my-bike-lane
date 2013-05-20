@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :violations
   has_many :blog_posts
   has_many :photos
+  has_one :subscription
 
   acts_as_voter
   has_karma(:violations, :as => :user)
@@ -26,6 +27,10 @@ class User < ActiveRecord::Base
 
   # Virtual attribute for allowing email or username for logging in
   attr_accessor :login
+
+  def to_s
+    "(#{id}) #{username} - #{email}"
+  end
 
   def display_name(html = true)
     display = ""
