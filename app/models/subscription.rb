@@ -2,7 +2,7 @@ class Subscription < ActiveRecord::Base
   attr_accessible :active, :email, :notification_type, :user, :user_id
   belongs_to :user
 
-  NOTIFICATION_TYPES = %i(violation weekly monthly)
+  NOTIFICATION_TYPES = [:violation, :weekly, :monthly]
 
   validates_presence_of :notification_type, :message => "You must choose a subscription type"
   validates_presence_of :email, :if => lambda { user.blank? }, :message => "Email required if no user is selected"
