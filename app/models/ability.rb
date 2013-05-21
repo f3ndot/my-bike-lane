@@ -15,6 +15,7 @@ class Ability
       can [:create, :update, :autocomplete], Violator
       can [:create, :update], Organization
       cannot :manage, Announcement
+      cannot [:manage, :index], Subscription
       can :hide, Announcement
       can [:show, :robots, :public_show], Page
       cannot :index, Page
@@ -27,6 +28,7 @@ class Ability
       # Users can manage their own violations
       can [:update, :destroy], Violation, :user_id => user.id
       can [:update, :destroy], Photo, :user_id => user.id
+      can [:update, :destroy], Subscription, :user_id => user.id
 
     # You can only flag if you're a user
       can [:flag, :up_vote, :down_vote], Violation
