@@ -26,6 +26,10 @@ class Violation < ActiveRecord::Base
 
   validates_presence_of :title, :address, :city
 
+  # Fixes the counter_cache in a has_many through relationship
+  after_create :increment_organization_counter_cache
+  after_destroy :decrement_organization_counter_cache
+
   def date_of_incident
     return '' if datetime_of_incident.blank?
     # default is "yyyy-mm-ddd"
@@ -62,6 +66,14 @@ class Violation < ActiveRecord::Base
   end
 
   private
+
+  def increment_organization_counter_cache
+    Organization.increment_counter 'violations_count', self.violator.organization.id
+  end
+
+  def decrement_organization_counter_cache
+    Organization.decrement_counter 'violations_count', self.violator.organization.id
+  end
 
   def merge_date_and_time
     if @date.present?
