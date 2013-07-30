@@ -18,7 +18,7 @@ class Violation < ActiveRecord::Base
   acts_as_voteable
 
   belongs_to :user
-  belongs_to :violator
+  belongs_to :violator, :counter_cache => true
   has_many :photos, :dependent => :destroy
 
   accepts_nested_attributes_for :photos, :reject_if => :all_blank, :allow_destroy => true
@@ -68,11 +68,15 @@ class Violation < ActiveRecord::Base
   private
 
   def increment_organization_counter_cache
-    Organization.increment_counter 'violations_count', self.violator.organization.id
+    if self.violator.present? && self.violator.organization.present?
+      Organization.increment_counter 'violations_count', self.violator.organization.id
+    end
   end
 
   def decrement_organization_counter_cache
-    Organization.decrement_counter 'violations_count', self.violator.organization.id
+    if self.violator.present? && self.violator.organization.present?
+      Organization.decrement_counter 'violations_count', self.violator.organization.id
+    end
   end
 
   def merge_date_and_time
