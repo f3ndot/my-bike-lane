@@ -15,6 +15,13 @@
   %body
     #mobileTag
 
+    - if Rails.env.staging?
+      .alert.alert-error.announcement
+        .container
+          .announcement-text
+            Hey! This is the staging site.  It's where I make experimental changes and test dumb stuff with no real data. You probably want to go to
+            = link_to 'the real site instead', 'http://www.mybikelane.to'
+
     = render 'layouts/navbar'
 
     .container
