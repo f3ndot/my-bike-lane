@@ -44,7 +44,7 @@ gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
 gem 'cancan'
-gem 'fog', "~> 1.3.1"
+gem 'fog'
 gem 'carrierwave'
 gem 'mini_magick'
 gem "friendly_id", "~> 4.0.1"
