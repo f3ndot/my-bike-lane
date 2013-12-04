@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.16'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -39,14 +39,14 @@ gem 'rakismet'
 gem 'jquery-rails'
 gem 'devise'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', ">= 1.5.1"
 gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
 gem 'cancan'
 gem 'fog'
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'mini_magick', ">= 3.6.0"
 gem "friendly_id", "~> 4.0.1"
 gem 'mail'
 
