@@ -3,6 +3,8 @@
   %head
     %meta{charset:"utf-8"}
     %title= page_title
+    - if Rails.env.staging?
+      %meta{name:"ROBOTS", content:"NOINDEX"}
     %meta{name:"viewport", content: "width=device-width, initial-scale=1.0"}
     %meta{name:"description", content:"Get out of my bike lane!"}
     %meta{name:"author", content:"Justin Bull"}
