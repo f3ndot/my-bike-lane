@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.18'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,6 +10,7 @@ gem 'sqlite3', :group => :development
 gem 'pg', :group => :staging
 gem 'pg', :group => :production
 gem 'thin'
+gem 'nokogiri', '~> 1.6.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,7 +32,7 @@ group :assets do
 end
 
 gem 'rabl'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate', '~> 3.0.5'
 gem 'will_paginate-bootstrap'
 gem 'cocoon'
 gem 'thumbs_up'
