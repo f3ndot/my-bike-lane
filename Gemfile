@@ -32,8 +32,8 @@ group :assets do
 end
 
 gem 'rabl'
-gem 'will_paginate', '~> 3.0.5'
-gem 'will_paginate-bootstrap'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 gem 'cocoon'
 gem 'thumbs_up'
 gem 'rakismet'
