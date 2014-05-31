@@ -38,6 +38,8 @@ MyBikeLane::Application.configure do
   # Default URL for Devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
+
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['SENDGRID_USERNAME'],

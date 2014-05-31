@@ -31,6 +31,26 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  # Rotate the image if it has a rotation flag set
+  process :auto_orient
+  def auto_orient
+    manipulate! do |img|
+      img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
+  # This aids in the privacy of users. Images have a lot of sensitive info nowadays
+  process :strip_exif
+  def strip_exif
+    manipulate! do |img|
+      img.strip
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
   process :resize_to_fit => [890, 668]
 
   # Process files as they are uploaded:
