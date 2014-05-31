@@ -167,7 +167,7 @@ class ViolationsController < ApplicationController
     @violation = Violation.new(params[:violation])
 
     # dirty hack to get the new or existing violator and save it with the provided attributes
-    if params[:violation][:violator_attributes][:license].present?
+    if params[:violation][:violator_attributes].present? && params[:violation][:violator_attributes][:license].present?
       @violation.license_plate = params[:violation][:violator_attributes][:license]
       @violation.violator.update_attributes params[:violation][:violator_attributes]
     end

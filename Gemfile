@@ -47,7 +47,7 @@ gem 'simple_form'
 gem 'cancan'
 gem 'fog'
 gem 'carrierwave'
-gem 'mini_magick', ">= 3.6.0"
+gem 'mini_magick'
 gem "friendly_id", "~> 4.0.1"
 gem 'mail'
 

@@ -233,7 +233,7 @@ DEPENDENCIES
   less-rails
   libv8
   mail
-  mini_magick (>= 3.6.0)
+  mini_magick
   nokogiri (~> 1.6.1)
   omniauth-facebook (>= 1.5.1)
   omniauth-twitter
