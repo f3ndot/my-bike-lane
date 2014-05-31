@@ -37,6 +37,7 @@ MyBikeLane::Application.routes.draw do
       get 'ham'
     end
     collection do
+      get 'page/:page', :action => :index
       get 'heatmap'
       get 'flagged'
       get 'spammed'

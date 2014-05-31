@@ -4,8 +4,6 @@ class Violation < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, :use => [:slugged, :history]
 
-  self.per_page = 10
-
   GTA_CITIES = %w(Toronto Markham Vaughan King Newmarket Aurora Richmond\ Hill Whitchurch-Stouffville East\ Gwillimbury Georgina Brock Uxbridge Scugog Pickering Ajax Whitby Oshawa Clarington Caledon Brampton Mississauga Oakville Milton Halton\ Hills Burlington).sort
 
   # anti-spam measures
@@ -14,6 +12,11 @@ class Violation < ActiveRecord::Base
   # default_scope where(:spammed => false) # Breaks more than you think
   scope :only_spammed, lambda { where(:spammed => true) }
   scope :without_spammed, lambda { where(:spammed => false) }
+
+  # a custom version of plusminus_tally so it can play well with Kaminari or will_paginate
+  scope :by_score, joins("LEFT OUTER JOIN votes ON violations.id = votes.voteable_id AND votes.voteable_type = 'Violation'").
+                   group("violations.id").
+                   order("SUM(CASE votes.vote WHEN 't' THEN 1 WHEN 'f' THEN -1 ELSE 0 END) DESC")
 
   acts_as_voteable
 

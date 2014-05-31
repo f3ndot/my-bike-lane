@@ -38,7 +38,7 @@ class ViolationsController < ApplicationController
   def index
     case params[:type]
     when "top"
-      @violations = Violation.without_spammed.plusminus_tally
+      @violations = Violation.without_spammed.by_score.page(params[:page])
     else
       @violations = Violation.without_spammed.order("created_at DESC").page(params[:page])
     end
