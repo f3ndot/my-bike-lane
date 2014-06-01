@@ -9,5 +9,6 @@ class Organization < ActiveRecord::Base
 
   scope :worst, lambda {|limit| where("violations_count > 0").order("violations_count DESC").limit(limit) } 
 
+  default_scope order('name ASC')
 
 end
