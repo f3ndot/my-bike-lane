@@ -21,4 +21,5 @@
 //= require bootstrap-timepicker.min.js
 //= require bootstrap-datepicker.js
 //= require google-analytics.js
+//= require browser_timezone_rails/application.js
 //= require cocoon

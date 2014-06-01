@@ -1,14 +1,13 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+# Canadian English for Rails
+# by Patrick CHEW (pchew@change.org)
+# contributors:
+#  - Patrick CHEW - https://github.com/pchew-change (pchew@change.org)
+# date/time notations based primarily on :
+# http://en.wikipedia.org/wiki/Date_and_time_notation_in_Canada
+# basing on the assumption that Anglophone Canada patterns after en-US
+# Corrected by [name] : [references]
 
-en:
-  hello: "Hello world"
-  unauthorized:
-    manage:
-      all: "Not authorized to %{action} %{subject}."
-      user: "Not allowed to manage other user accounts."
-    update:
-      violation: "Not allowed to update this bike lane violation."
+en-CA:
   date:
     abbr_day_names:
     - Sun
