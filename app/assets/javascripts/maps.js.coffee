@@ -1,7 +1,7 @@
 jQuery ->
   geocoder = new google.maps.Geocoder()
 
-  default_latlng = new google.maps.LatLng 43.66365, -79.377594
+  default_latlng = new google.maps.LatLng 43.66365, -79.407594
 
   if document.getElementById("organization_map") != null
     organization_map = new google.maps.Map document.getElementById("organization_map"),
@@ -79,7 +79,7 @@ jQuery ->
   if document.getElementById("preview_map") != null
     preview_map = new google.maps.Map document.getElementById("preview_map"),
       center: default_latlng,
-      zoom: 13,
+      zoom: 12,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       streetViewControl: false,
       mapTypeControl: false,
@@ -136,7 +136,8 @@ jQuery ->
 
       heatmap_layer = new google.maps.visualization.HeatmapLayer
         data: heatmapData
+        radius: 10
 
-      heatmap.setCenter heatmapBounds.getCenter()
-      heatmap.fitBounds heatmapBounds
+      # heatmap.setCenter heatmapBounds.getCenter()
+      # heatmap.fitBounds heatmapBounds
       heatmap_layer.setMap heatmap
