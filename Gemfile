@@ -31,7 +31,6 @@ group :assets do
   gem 'jquery-fileupload-rails'
 end
 
-gem 'browser-timezone-rails'
 gem 'rabl'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
@@ -65,4 +64,4 @@ gem 'mail'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger', :group => :development
+# gem 'debugger'

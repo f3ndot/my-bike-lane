@@ -33,9 +33,6 @@ GEM
     bootstrap-kaminari-views (0.0.2)
       kaminari (>= 0.13)
       rails (>= 3.1)
-    browser-timezone-rails (0.0.6)
-      jquery-rails
-      rails (>= 3.1)
     builder (3.0.4)
     cancan (1.6.8)
     carrierwave (0.9.0)
@@ -50,15 +47,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    columnize (0.3.6)
     commonjs (0.2.6)
     daemons (1.1.8)
-    debugger (1.6.3)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.4)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.4)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -228,12 +218,10 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-kaminari-views
-  browser-timezone-rails
   cancan
   carrierwave
   cocoon
   coffee-rails (~> 3.2.1)
-  debugger
   devise
   fog
   friendly_id (~> 4.0.1)
