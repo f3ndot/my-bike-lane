@@ -74,7 +74,7 @@ Once this succeeds, bootstrap the Rails app database (development uses SQLite3):
 
 First define your development database configuation (create the file `config/database.yml`):
 
-``yml
+```yml
 development:
   adapter: sqlite3
   database: db/development.sqlite3
