@@ -34,11 +34,6 @@ A Word on Funding
 
 I know it's a silly project, but it does cost me money to run. If you have enjoyed using the site please consider [buying me a cup of coffee](http://www.mybikelane.to/page/support-mybikelane-toronto).
 
-If you'd rather feel warm and fuzzy inside, I'm also fundraising for the [Ride to Conquer Cancer 2013](http://www.conquercancer.ca/goto/justinbull) event:
-
-[![Ride to Conquer Cancer 2013](http://badge.boundlessfundraising.com/en_CA/image/display/cfrccca/1431/3153354 "Ride to Conquer Cancer 2013")](http://www.conquercancer.ca/site/TR?px=3153354&pg=personal&fr_id=1431&s_src=BF_emailbadge2012)
-
-
 
 Questions or Problems?
 ----------------------
@@ -47,6 +42,31 @@ Have a suggestion, bug, or problem? [Contact me](mailto:me@justinbull.ca)
 
 **Developers:** If you have any issues with MyBikeLane Toronto, please add an [issue on GitHub](https://github.com/f3ndot/my-bike-lane/issues) or fork the project and send a pull request.
 
+
+Development
+-----------
+
+Developed with Ruby 2 or higher. You'll want to get Ruby on your system using RVM, RBenv, what-have-you.
+
+Install all the dependencies for the app by running Bundler's install command. (run `gem install bundle` first if `bundle` doesn't exist in your PATH)
+
+```
+bundle install --without staging production
+```
+
+Once this succeeds, bootstrap the Rails app database (development uses SQLite3):
+
+```
+bundle exec rake db:setup
+```
+
+Ok! You're ready to start developing. Start the server by invoking:
+
+```
+bundle exec rails server
+```
+
+For more specifics, read up on the [Ruby on Rails 3.2.18](http://guides.rubyonrails.org/v3.2.18/) documentation
 
 Special Thanks
 ----------------------
