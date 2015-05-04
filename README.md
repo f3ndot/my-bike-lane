@@ -48,6 +48,22 @@ Development
 
 Developed with Ruby 2 or higher. You'll want to get Ruby on your system using RVM, RBenv, what-have-you.
 
+__As a requirement for image uploading to work, you'll need ImageMagick or GraphicsMagick command-line tool installed.__ You can check if you have it installed by running
+
+```
+$ convert -version
+Version: ImageMagick 6.8.9-7 Q16 x86_64 2014-09-11 http://www.imagemagick.org
+Copyright: Copyright (C) 1999-2014 ImageMagick Studio LLC
+Features: DPC Modules
+Delegates: bzlib fftw freetype jng jpeg lcms ltdl lzma png tiff xml zlib
+```
+
+If you don't have it, it's pretty easy to install on Linux. Mac users can use Homebrew:
+
+```
+brew install imagemagick
+```
+
 Install all the dependencies for the app by running Bundler's install command. (run `gem install bundle` first if `bundle` doesn't exist in your PATH)
 
 ```
