@@ -56,6 +56,18 @@ bundle install --without staging production
 
 Once this succeeds, bootstrap the Rails app database (development uses SQLite3):
 
+First define your development database configuation (create the file `config/database.yml`):
+
+``yml
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+```
+
+Then bootstrap it with the seed data and schema:
+
 ```
 bundle exec rake db:setup
 ```
