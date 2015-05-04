@@ -7,8 +7,7 @@ gem 'rails', '3.2.18'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3', :group => :development
-gem 'pg', :group => :staging
-gem 'pg', :group => :production
+gem 'pg', :group => [:staging, :production]
 gem 'thin'
 gem 'nokogiri', '~> 1.6.1'
 
