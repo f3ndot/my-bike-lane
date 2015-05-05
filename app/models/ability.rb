@@ -12,6 +12,7 @@ class Ability
       # Globally allow all to see
       can :read, :all
       can [:create, :heatmap], Violation
+      can [:create], Photo
       can [:create, :update, :autocomplete], Violator
       can [:create, :update], Organization
       cannot :manage, Announcement
