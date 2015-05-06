@@ -68,6 +68,16 @@ class Violation < ActiveRecord::Base
     self.violator = Violator.find_or_initialize_by_license(number) if number.present?
   end
 
+  def photo_url
+    if self.photos.count > 0
+      ActionController::Base.helpers.asset_path(self.photos.first.image);
+    end
+  end
+
+  def as_json(options = { })
+    super((options || { }).merge({:methods => [:photo_url]}))
+  end
+
   private
 
   def increment_organization_counter_cache
