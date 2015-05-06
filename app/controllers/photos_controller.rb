@@ -44,6 +44,9 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(params[:photo])
     @photo.user = current_user unless current_user.nil?
+    # TODO Have to explicitly assign these values, as the constructor above doesn't take all params
+    @photo.image = params[:image]
+    @photo.violation_id = params[:violation_id]
 
     respond_to do |format|
       if @photo.save
