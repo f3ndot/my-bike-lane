@@ -69,6 +69,7 @@ class Violation < ActiveRecord::Base
   end
 
   def photo_url
+    # TODO Send all photo links?
     if self.photos.count > 0
       ActionController::Base.helpers.asset_path(self.photos.first.image);
     end
