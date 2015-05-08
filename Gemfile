@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.2.0'
 
 gem 'rails', '3.2.18'
 
@@ -49,6 +49,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem "friendly_id", "~> 4.0.1"
 gem 'mail'
+gem 'rack-cors', :require => 'rack/cors'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
