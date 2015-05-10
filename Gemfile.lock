@@ -159,7 +159,8 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    friendly_id (4.0.9)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
