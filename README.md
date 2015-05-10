@@ -82,6 +82,7 @@ development:
   timeout: 5000
 ```
 
+Note: You must NOT have an environment variable called DATABASE_URL, as it will confuse Rails.
 Then bootstrap it with the seed data and schema:
 
 ```
@@ -94,7 +95,7 @@ Ok! You're ready to start developing. Start the server by invoking:
 bundle exec rails server
 ```
 
-For more specifics, read up on the [Ruby on Rails 3.2.18](http://guides.rubyonrails.org/v3.2.18/) documentation
+For more specifics, read up on the [Ruby on Rails 3.2.21](http://guides.rubyonrails.org/v3.2.21/) documentation
 
 Special Thanks
 ----------------------

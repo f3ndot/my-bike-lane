@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.21'
+
+gem 'rails_12factor', group: [:staging, :production]
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
