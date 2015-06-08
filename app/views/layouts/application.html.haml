@@ -46,9 +46,9 @@
             %h4 Violations Heatmap
             #violation_heatmap.mapfix
 
-            %h4 Most Organization Violations
+            %h4 Most Violating Organizations
             %dl.dl-horizontal
-              - Organization.worst(10).each do |org|
+              - Organization.unscoped.worst(10).each do |org|
                 %dt= link_to org.name, org
                 %dd= org.violations.size
 
