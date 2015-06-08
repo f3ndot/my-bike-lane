@@ -31,6 +31,12 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.3)
     bcrypt-ruby (3.0.1)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-kaminari-views (0.0.2)
       kaminari (>= 0.13)
       rails (>= 3.1)
@@ -41,6 +47,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
     cocoon (1.1.1)
+    coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -50,6 +57,7 @@ GEM
     coffee-script-source (1.4.0)
     commonjs (0.2.6)
     daemons (1.1.8)
+    debug_inspector (0.0.2)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -316,6 +324,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootstrap-kaminari-views
   cancan
   carrierwave
@@ -323,7 +333,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   fog
-  friendly_id (~> 4.0.1)
+  friendly_id (~> 4.0.10.1)
   haml
   haml-rails
   jquery-fileupload-rails

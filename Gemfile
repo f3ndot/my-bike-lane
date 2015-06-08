@@ -9,6 +9,8 @@ gem 'rails_12factor', group: [:staging, :production]
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3', :group => :development
+gem 'better_errors', :group => :development
+gem "binding_of_caller", :group => :development
 gem 'pg', :group => [:staging, :production]
 gem 'thin'
 gem 'nokogiri', '~> 1.6.1'
@@ -49,7 +51,7 @@ gem 'cancan'
 gem 'fog'
 gem 'carrierwave'
 gem 'mini_magick'
-gem "friendly_id", "~> 4.0.1"
+gem "friendly_id", "~> 4.0.10.1"
 gem 'mail'
 gem 'rack-cors', :require => 'rack/cors'
 
