@@ -42,7 +42,7 @@
       %dl.dl-horizontal
         %dt First Reported By
         - @first_violation = @violator.violations.order('created_at').first
-        - if @first_violation.user.present?
+        - if @first_violation.present? && @first_violation.user.present?
           %dd
             = link_to image_tag(avatar_url(@first_violation.user, 20), {class: "avatar-url"}), user_path(@first_violation.user)
             = link_to @first_violation.user.display_name, user_path(@first_violation.user)
