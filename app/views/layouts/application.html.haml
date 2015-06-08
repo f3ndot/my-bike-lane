@@ -50,13 +50,13 @@
             %dl.dl-horizontal
               - Organization.worst(10).each do |org|
                 %dt= link_to org.name, org
-                %dd= org.violations_count
+                %dd= org.violations.size
 
             %h4 Worst Repeat Offenders
             %dl.dl-horizontal
               - Violator.worst(10).each do |v|
                 %dt= link_to v.license, v
-                %dd= v.violations_count
+                %dd= v.violations.size
 
             %dl
               %dt Total Violations
